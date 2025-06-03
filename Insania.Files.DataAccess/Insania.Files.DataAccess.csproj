@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Insania.Shared.Contracts" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Insania.Files.Contracts\Insania.Files.Contracts.csproj" />
+    <ProjectReference Include="..\Insania.Files.Database\Insania.Files.Database.csproj" />
+    <ProjectReference Include="..\Insania.Files.Entities\Insania.Files.Entities.csproj" />
+    <ProjectReference Include="..\Insania.Files.Messages\Insania.Files.Messages.csproj" />
+    <ProjectReference Include="..\Insania.Files.Models\Insania.Files.Models.csproj" />
+  </ItemGroup>
+
+</Project>
