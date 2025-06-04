@@ -16,5 +16,7 @@ public static class Extension
     /// <returns cref="IServiceCollection">Модифицированная коллекция сервисов</returns>
     public static IServiceCollection AddFilesDAO(this IServiceCollection services) =>
         services
+            .AddScoped<IFilesTypesDAO, FilesTypesDAO>() //сервис работы с данными типов файлов
+            .AddScoped<IFilesDAO, FilesDAO>() //сервис работы с данными файлов
         ;
 }

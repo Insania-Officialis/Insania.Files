@@ -13,6 +13,7 @@ using Insania.Files.BusinessLogic;
 using Insania.Files.DataAccess;
 using Insania.Files.Database.Contexts;
 using Insania.Files.Models.Settings;
+using Insania.Files.Models.Mapper;
 
 namespace Insania.Files.Tests.Base;
 
@@ -67,6 +68,9 @@ public abstract class BaseTest
             .WriteTo.Debug()
             .CreateLogger();
         services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(Log.Logger, dispose: true));
+
+        //Добавление параметров преобразования моделей
+        services.AddAutoMapper(typeof(FilesMappingProfile));
 
         //Добавление параметров инициализации данных
         IConfigurationSection? initializationDataSettings = configuration.GetSection("InitializationDataSettings");

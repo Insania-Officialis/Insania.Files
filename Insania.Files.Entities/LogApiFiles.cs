@@ -9,7 +9,7 @@ namespace Insania.Files.Entities;
 /// <summary>
 /// Модель сущности лога сервиса файлов
 /// </summary>
-[Table("r_logs_api_biology")]
+[Table("r_logs_api_files")]
 [Comment("Логи сервиса файлов")]
 public class LogApiFiles : Log
 {

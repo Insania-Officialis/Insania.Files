@@ -135,6 +135,7 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                     [
                         new(_transliteration, 1, _username, "Расы", ""),
                         new(_transliteration, 2, _username, "Нации", ""),
+                        new(_transliteration, 3, _username, "Удалённый", "", DateTime.UtcNow),
                     ];
 
                     //Проход по коллекции сущностей
@@ -170,7 +171,7 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                     string[][] keys =
                     [
                         ["1", "race_0.png", "1", ""],
-                        ["2", "deleted_0.png", "2", DateTime.UtcNow.ToString()]
+                        ["2", "deleted_0.png", "3", DateTime.UtcNow.ToString()]
                     ];
 
                     //Проход по коллекции ключей

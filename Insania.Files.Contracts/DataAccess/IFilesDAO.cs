@@ -1,4 +1,4 @@
-﻿using Insania.Files.Entities;
+﻿using FileEntity = Insania.Files.Entities.File;
 
 namespace Insania.Files.Contracts.DataAccess;
 
@@ -10,7 +10,7 @@ public interface IFilesDAO
     /// <summary>
     /// Метод получения списка файлов
     /// </summary>
-    /// <returns cref="List{FileType}">Список файлов</returns>
+    /// <returns cref="List{FileEntity}">Список файлов</returns>
     /// <exception cref="Exception">Исключение</exception>
-    Task<List<FileType>> GetList();
+    Task<List<FileEntity>> GetList();
 }

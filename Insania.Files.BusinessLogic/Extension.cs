@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
+using Insania.Files.Contracts.BusinessLogic;
 using Insania.Files.DataAccess;
 
 namespace Insania.Files.BusinessLogic;
@@ -17,5 +18,6 @@ public static class Extension
     public static IServiceCollection AddFilesBL(this IServiceCollection services) =>
         services
             .AddFilesDAO() //сервисы работы с данными в зоне файлов
+            .AddScoped<IFilesTypesBL, FilesTypesBL>() //сервис работы с бизнес-логикой типов файлов
         ;
 }

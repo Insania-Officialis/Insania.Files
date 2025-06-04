@@ -1,8 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
+﻿using Insania.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
-
-using Insania.Shared.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata;
 
 namespace Insania.Files.Entities;
 
@@ -78,6 +77,7 @@ public class File : Reestr
     /// </summary>
     [Column("type_id")]
     [Comment("Идентификатор типа")]
+    [ForeignKey(nameof(TypeEntity))]
     public long TypeId { get; private set; }
     #endregion
 
