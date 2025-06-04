@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Insania.Shared.Contracts" Version="1.0.3" />
     <PackageReference Include="Insania.Shared.Middleware" Version="1.0.0" />
+    <PackageReference Include="Insania.Shared.Services" Version="1.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.5" />
@@ -28,15 +30,6 @@
     <ProjectReference Include="..\Insania.Files.Messages\Insania.Files.Messages.csproj" />
     <ProjectReference Include="..\Insania.Files.Middleware\Insania.Files.Middleware.csproj" />
     <ProjectReference Include="..\Insania.Files.Models\Insania.Files.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Insania.Shared.Contracts">
-      <HintPath>I:\Nuget\insania.shared.contracts\1.0.2\lib\net9.0\Insania.Shared.Contracts.dll</HintPath>
-    </Reference>
-    <Reference Include="Insania.Shared.Services">
-      <HintPath>I:\Nuget\insania.shared.services\1.0.2\lib\net9.0\Insania.Shared.Services.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
