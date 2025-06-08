@@ -98,5 +98,40 @@ public class FilesDAOTests : BaseTest
             }
         }
     }
+
+    /// <summary>
+    /// Тест метода получения списка файлов по идентификатору сущности
+    /// </summary>
+    /// <param cref="long?" name="entityId">Идентификатор сущности</param>
+    [TestCase(null)]
+    [TestCase(-1)]
+    [TestCase(1)]
+    [TestCase(2)]
+    public async Task GetListTest(long? id)
+    {
+        try
+        {
+            //Получение результата
+            List<FileEntity> result = await FilesDAO.GetList(id);
+
+            //Проверка результата
+            Assert.That(result, Is.Not.Null);
+            switch (id)
+            {
+                case -1: case 2: Assert.That(result, Is.Empty); break;
+                case 1: Assert.That(result, Is.Not.Empty); break;
+                default: throw new Exception(ErrorMessages.NotFoundTestCase);
+            }
+        }
+        catch (Exception ex)
+        {
+            //Проверка исключения
+            switch (id)
+            {
+                case null: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.EmptyEntity)); break;
+                default: throw;
+            }
+        }
+    }
     #endregion
 }

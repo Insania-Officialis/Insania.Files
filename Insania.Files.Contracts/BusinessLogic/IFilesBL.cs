@@ -1,4 +1,6 @@
-﻿using Insania.Files.Models.Responses;
+﻿using Insania.Shared.Models.Responses.Base;
+
+using Insania.Files.Models.Responses;
 
 namespace Insania.Files.Contracts.BusinessLogic;
 
@@ -14,4 +16,13 @@ public interface IFilesBL
     /// <returns cref="FileResponse?">Ответ файла</returns>
     /// <exception cref="Exception">Исключение</exception>
     Task<FileResponse?> GetById(long? id);
+
+    /// <summary>
+    /// Метод получения списка файлов по идентификатору сущности
+    /// </summary>
+    /// <param cref="long?" name="entityId">Идентификатор сущности</param>
+    /// <returns cref="BaseResponseList">Стандартный ответ списком</returns>
+    /// <remarks>Список идентификатор файлов</remarks>
+    /// <exception cref="Exception">Исключение</exception>
+    Task<BaseResponseList?> GetList(long? entityId);
 }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
+using Insania.Shared.Models.Responses.Base;
+
 using Insania.Files.Contracts.BusinessLogic;
 using Insania.Files.Messages;
 using Insania.Files.Models.Responses;
@@ -45,6 +47,7 @@ public class FilesBLTests : BaseTest
     /// <summary>
     /// Тест метода получения файла по идентификатору
     /// </summary>
+    /// <param cref="long?" name="id">Идентификатор файла</param>
     [TestCase(null)]
     [TestCase(-1)]
     [TestCase(1)]
@@ -82,6 +85,42 @@ public class FilesBLTests : BaseTest
                 case 3: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.IncorrectContentType)); break;
                 case 4: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.DeletedFileType)); break;
                 case 5: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.DeletedFile)); break;
+                default: throw;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Тест метода получения списка файла по идентификатору сущности
+    /// </summary>
+    /// <param cref="long?" name="entityId">Идентификатор сущности</param>
+    [TestCase(null)]
+    [TestCase(-1)]
+    [TestCase(1)]
+    [TestCase(2)]
+    public async Task GetListTest(long? entityId)
+    {
+        try
+        {
+            //Получение результата
+            BaseResponseList? result = await FilesBL.GetList(entityId);
+
+            //Проверка результата
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Success, Is.True);
+            switch (entityId)
+            {
+                case -1: case 2: Assert.That(result.Items, Is.Empty); break;
+                case 1: Assert.That(result.Items, Is.Not.Empty); break;
+                default: throw new Exception(ErrorMessages.NotFoundTestCase);
+            }
+        }
+        catch (Exception ex)
+        {
+            //Проверка исключения
+            switch (entityId)
+            {
+                case null: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.EmptyEntity)); break;
                 default: throw;
             }
         }

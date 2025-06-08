@@ -9,6 +9,7 @@ public static class ErrorMessages
     public const string DeletedFileType = "Тип файла удалён в зоне файлов";
     public const string Error = "Ошибка в зоне файлов";
     public const string EmptyConnectionString = "Пустая строка подключения к базе данных файлов";
+    public const string EmptyEntity = "Пустая сущность в зоне файлов";
     public const string EmptyFile = "Пустой файл в зоне файлов";
     public const string EmptyFileType = "Пустой тип файла в зоне файлов";
     public const string EmptyScriptsPath = "Пустой путь к скриптам в зоне файлов";

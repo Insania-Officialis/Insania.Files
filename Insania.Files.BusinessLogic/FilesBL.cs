@@ -2,6 +2,8 @@
 
 using AutoMapper;
 
+using Insania.Shared.Models.Responses.Base;
+
 using Insania.Files.Collections;
 using Insania.Files.Contracts.BusinessLogic;
 using Insania.Files.Contracts.DataAccess;
@@ -19,15 +21,21 @@ namespace Insania.Files.BusinessLogic;
 /// Сервис работы с бизнес-логикой файлов
 /// </summary>
 /// <param cref="ILogger{FilesBL}" name="logger">Сервис логгирования</param>
+/// <param cref="IMapper" name="mapper">Сервис преобразования моделей</param>
 /// <param cref="IFilesDAO" name="filesDAO">Сервис работы с данными файлов</param>
 /// <param cref="IFilesTypesDAO" name="filesTypesDAO">Сервис работы с данными типов файлов</param>
-public class FilesBL(ILogger<FilesBL> logger, IFilesDAO filesDAO, IFilesTypesDAO filesTypesDAO) : IFilesBL
+public class FilesBL(ILogger<FilesBL> logger, IMapper mapper, IFilesDAO filesDAO, IFilesTypesDAO filesTypesDAO) : IFilesBL
 {
     #region Зависимости
     /// <summary>
     /// Сервис логгирования
     /// </summary>
     private readonly ILogger<FilesBL> _logger = logger;
+
+    /// <summary>
+    /// Сервис преобразования моделей
+    /// </summary>
+    private readonly IMapper _mapper = mapper;
 
     /// <summary>
     /// Сервис работы с данными файлов
@@ -52,7 +60,7 @@ public class FilesBL(ILogger<FilesBL> logger, IFilesDAO filesDAO, IFilesTypesDAO
         try
         {
             //Логгирование
-            _logger.LogInformation(InformationMessages.EnteredGetListFilesMethod);
+            _logger.LogInformation(InformationMessages.EnteredGetByIdFileMethod);
 
             //Проверки
             if (id == null) throw new Exception(ErrorMessages.EmptyFile);
@@ -86,6 +94,44 @@ public class FilesBL(ILogger<FilesBL> logger, IFilesDAO filesDAO, IFilesTypesDAO
 
             //Формирование ответа
             FileResponse response = new(true, stream, contentType);
+
+            //Возврат ответа
+            return response;
+        }
+        catch (Exception ex)
+        {
+            //Логгирование
+            _logger.LogError("{text}: {error}", ErrorMessages.Error, ex.Message);
+
+            //Проброс исключения
+            throw;
+        }
+    }
+
+    /// <summary>
+    /// Метод получения списка файлов по идентификатору сущности
+    /// </summary>
+    /// <param cref="long?" name="entityId">Идентификатор сущности</param>
+    /// <returns cref="BaseResponseList">Стандартный ответ списком</returns>
+    /// <remarks>Список идентификатор файлов</remarks>
+    /// <exception cref="Exception">Исключение</exception>
+    public async Task<BaseResponseList?> GetList(long? entityId)
+    {
+        try
+        {
+            //Логгирование
+            _logger.LogInformation(InformationMessages.EnteredGetListFilesMethod);
+
+            //Проверки
+            if (entityId == null) throw new Exception(ErrorMessages.EmptyEntity);
+
+            //Получение данных
+            List<FileEntity> data = await _filesDAO.GetList(entityId);
+
+            //Формирование ответа
+            BaseResponseList? response = null;
+            if (data == null) response = new(false, null);
+            else response = new(true, data?.Select(_mapper.Map<BaseResponseListItem>).ToList());
 
             //Возврат ответа
             return response;

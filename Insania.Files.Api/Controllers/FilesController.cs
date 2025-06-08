@@ -60,5 +60,33 @@ public class FilesController(ILogger<FilesController> logger, IFilesBL filesServ
             return BadRequest(new BaseResponseError(ex.Message));
         }
     }
+
+    /// <summary>
+    /// Метод получения списка файлов по идентификатору сущности
+    /// </summary>
+    /// <param cref="long" name="entity_id">Идентификатор сущности</param>
+    /// <returns cref="OkResult">Список файлов</returns>
+    /// <returns cref="BadRequestResult">Ошибка</returns>
+    [HttpGet]
+    [Route("list")]
+    public async Task<IActionResult> GetList([FromQuery] long? entity_id)
+    {
+        try
+        {
+            //Получение результата проверки логина
+            BaseResponseList? result = await _filesService.GetList(entity_id);
+
+            //Возврат ответа
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            //Логгирование
+            _logger.LogError("{text} {ex}", ErrorMessages.Error, ex);
+
+            //Возврат ошибки
+            return BadRequest(new BaseResponseError(ex.Message));
+        }
+    }
     #endregion
 }

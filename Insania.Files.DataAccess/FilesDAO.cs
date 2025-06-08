@@ -87,5 +87,37 @@ public class FilesDAO(ILogger<FilesDAO> logger, FilesContext context) : IFilesDA
             throw;
         }
     }
+
+    /// <summary>
+    /// Метод получения списка файлов по идентификатору сущности
+    /// </summary>
+    /// <param cref="long?" name="entityId">Идентификатор сущности</param>
+    /// <returns cref="List{FileEntity}">Список файлов</returns>
+    /// <exception cref="Exception">Исключение</exception>
+    public async Task<List<FileEntity>> GetList(long? entityId)
+    {
+        try
+        {
+            //Логгирование
+            _logger.LogInformation(InformationMessages.EnteredGetListFilesMethod);
+
+            //Проверки
+            if (entityId == null) throw new Exception(ErrorMessages.EmptyEntity);
+
+            //Получение данных из бд
+            List<FileEntity> data = await _context.Files.Where(x => x.DateDeleted == null && x.EntityId == entityId).ToListAsync();
+
+            //Возврат результата
+            return data;
+        }
+        catch (Exception ex)
+        {
+            //Логгирование
+            _logger.LogError("{text}: {error}", ErrorMessages.Error, ex.Message);
+
+            //Проброс исключения
+            throw;
+        }
+    }
     #endregion
 }
