@@ -184,7 +184,22 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                         ["2", "race_1.png", "1", "1", ""],
                         ["3", "incorrect_content_type_0.png1", "1", "1", ""],
                         ["4", "deleted_type_0.png", "3", "0", ""],
-                        ["5", "deleted_0.png", "3", "0", DateTime.UtcNow.ToString()]
+                        ["5", "deleted_0.png", "3", "0", DateTime.UtcNow.ToString()],
+                        ["6", "ichthyid.png", "1", "1", ""],
+                        ["7", "mraat.png", "1", "4", ""],
+                        ["8", "human.png", "1", "5", ""],
+                        ["9", "vampire.png", "1", "6", ""],
+                        ["10", "elf.png", "1", "7", ""],
+                        ["11", "metamorf.png", "1", "8", ""],
+                        ["12", "orc.png", "1", "9", ""],
+                        ["13", "dwarf.png", "1", "10", ""],
+                        ["14", "troll.png", "1", "11", ""],
+                        ["15", "goblin.png", "1", "12", ""],
+                        ["16", "ogre.png", "1", "13", ""],
+                        ["17", "alv.png", "1", "14", ""],
+                        ["18", "antorpozavr.png", "1", "15", ""],
+                        ["19", "elvin.jpg", "1", "16", ""],
+                        ["20", "danu.png", "1", "17", ""],
                     ];
 
                     //Проход по коллекции ключей
