@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-
-using Insania.Files.Contracts.DataAccess;
+﻿using Insania.Files.Contracts.DataAccess;
 using Insania.Files.Database.Contexts;
+using Insania.Files.Entities;
 using Insania.Files.Messages;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using FileEntity = Insania.Files.Entities.File;
 
 namespace Insania.Files.DataAccess;
@@ -55,7 +54,38 @@ public class FilesDAO(ILogger<FilesDAO> logger, FilesContext context) : IFilesDA
             //Проброс исключения
             throw;
         }
+    }
 
+    /// <summary>
+    /// Метод получения файла по идентификатору
+    /// </summary>
+    /// <param cref="long?" name="id">Идентификатор файла</param>
+    /// <returns cref="FileEntity?">Тип файла</returns>
+    /// <exception cref="Exception">Исключение</exception>
+    public async Task<FileEntity?> GetById(long? id)
+    {
+        try
+        {
+            //Логгирование
+            _logger.LogInformation(InformationMessages.EnteredGetByIdFileMethod);
+
+            //Проверки
+            if (id == null) throw new Exception(ErrorMessages.EmptyFile);
+
+            //Получение данных из бд
+            FileEntity? data = await _context.Files.FirstOrDefaultAsync(x => x.Id == id);
+
+            //Возврат результата
+            return data;
+        }
+        catch (Exception ex)
+        {
+            //Логгирование
+            _logger.LogError("{text}: {error}", ErrorMessages.Error, ex.Message);
+
+            //Проброс исключения
+            throw;
+        }
     }
     #endregion
 }

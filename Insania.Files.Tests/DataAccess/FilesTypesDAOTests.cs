@@ -4,6 +4,7 @@ using Insania.Files.Contracts.DataAccess;
 using Insania.Files.Tests.Base;
 
 using Insania.Files.Entities;
+using Insania.Files.Messages;
 
 namespace Insania.Files.Tests.DataAccess;
 
@@ -43,7 +44,7 @@ public class FilesTypesDAOTests : BaseTest
 
     #region Методы тестирования
     /// <summary>
-    /// Тест метода получения списка файлов
+    /// Тест метода получения списка типов файлов
     /// </summary>
     [Test]
     public async Task GetListTest()
@@ -61,6 +62,40 @@ public class FilesTypesDAOTests : BaseTest
         {
             //Проброс исключения
             throw;
+        }
+    }
+
+    /// <summary>
+    /// Тест метода получения типа файла по идентификатору
+    /// </summary>
+    /// <param cref="long?" name="id">Идентификатор типа файла</param>
+    [TestCase(null)]
+    [TestCase(-1)]
+    [TestCase(1)]
+    [TestCase(3)]
+    public async Task GetByIdTest(long? id)
+    {
+        try
+        {
+            //Получение результата
+            FileType? result = await FilesTypesDAO.GetById(id);
+
+            //Проверка результата
+            switch (id)
+            {
+                case -1: Assert.That(result, Is.Null); break;
+                case 1: case 3: Assert.That(result, Is.Not.Null); break;
+                default: throw new Exception(ErrorMessages.NotFoundTestCase);
+            }
+        }
+        catch (Exception ex)
+        {
+            //Проверка исключения
+            switch (id)
+            {
+                case null: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.EmptyFileType)); break;
+                default: throw;
+            }
         }
     }
     #endregion

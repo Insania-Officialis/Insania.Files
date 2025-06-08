@@ -5,6 +5,8 @@
 /// </summary>
 public static class InformationMessages
 {
+    public const string EnteredGetByIdFileMethod = "Вошли в метод получения файла по идентификатору";
+    public const string EnteredGetByIdFileTypeMethod = "Вошли в метод получения типа файла по идентификатору";
     public const string EnteredGetListFilesMethod = "Вошли в метод получения списка файлов";
     public const string EnteredGetListFilesTypesMethod = "Вошли в метод получения списка типов файлов";
     public const string EnteredInitializeMethod = "Вошли в метод инициализации данных в бд файлов";

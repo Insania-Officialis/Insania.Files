@@ -13,4 +13,12 @@ public interface IFilesTypesDAO
     /// <returns cref="List{FileType}">Список типов файлов</returns>
     /// <exception cref="Exception">Исключение</exception>
     Task<List<FileType>> GetList();
+
+    /// <summary>
+    /// Метод получения типа файла по идентификатору
+    /// </summary>
+    /// <param cref="long?" name="id">Идентификатор типа файла</param>
+    /// <returns cref="FileType?">Тип файла</returns>
+    /// <exception cref="Exception">Исключение</exception>
+    Task<FileType?> GetById(long? id);
 }

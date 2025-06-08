@@ -19,5 +19,6 @@ public static class Extension
         services
             .AddFilesDAO() //сервисы работы с данными в зоне файлов
             .AddScoped<IFilesTypesBL, FilesTypesBL>() //сервис работы с бизнес-логикой типов файлов
+            .AddScoped<IFilesBL, FilesBL>() //сервис работы с бизнес-логикой файлов
         ;
 }

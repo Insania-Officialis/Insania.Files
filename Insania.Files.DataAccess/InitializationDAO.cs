@@ -133,9 +133,9 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                     //Создание коллекции сущностей
                     List<FileType> entities =
                     [
-                        new(_transliteration, 1, _username, "Расы", ""),
-                        new(_transliteration, 2, _username, "Нации", ""),
-                        new(_transliteration, 3, _username, "Удалённый", "", DateTime.UtcNow),
+                        new(_transliteration, 1, _username, "Расы", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
+                        new(_transliteration, 2, _username, "Нации", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
+                        new(_transliteration, 3, _username, "Удалённый", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles", DateTime.UtcNow),
                     ];
 
                     //Проход по коллекции сущностей
@@ -147,6 +147,16 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
 
                     //Сохранение изменений в бд
                     await _filesContext.SaveChangesAsync();
+
+                    //Создание шаблона файла скриптов
+                    string pattern = @"^t_file_types_\d+.sql";
+
+                    //Проходим по всем скриптам
+                    foreach (var file in Directory.GetFiles(_settings.Value.ScriptsPath!).Where(x => Regex.IsMatch(Path.GetFileName(x), pattern)))
+                    {
+                        //Выполняем скрипт
+                        await ExecuteScript(file, _filesContext);
+                    }
 
                     //Фиксация транзакции
                     transaction.Commit();
@@ -170,8 +180,11 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                     //Создание коллекции ключей
                     string[][] keys =
                     [
-                        ["1", "race_0.png", "1", ""],
-                        ["2", "deleted_0.png", "3", DateTime.UtcNow.ToString()]
+                        ["1", "race_0.png", "1", "1", ""],
+                        ["2", "race_1.png", "1", "1", ""],
+                        ["3", "incorrect_content_type_0.png1", "1", "1", ""],
+                        ["4", "deleted_type_0.png", "3", "0", ""],
+                        ["5", "deleted_0.png", "3", "0", DateTime.UtcNow.ToString()]
                     ];
 
                     //Проход по коллекции ключей
@@ -185,8 +198,8 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
 
                             //Создание сущности
                             DateTime? dateDeleted = null;
-                            if (!string.IsNullOrWhiteSpace(key[3])) dateDeleted = DateTime.Parse(key[3]);
-                            FileEntity entity = new(long.Parse(key[0]), _username, true, key[1], fileType, dateDeleted);
+                            if (!string.IsNullOrWhiteSpace(key[4])) dateDeleted = DateTime.Parse(key[4]);
+                            FileEntity entity = new(long.Parse(key[0]), _username, true, key[1], fileType, long.Parse(key[3]), dateDeleted);
 
                             //Добавление сущности в бд
                             await _filesContext.Files.AddAsync(entity);
@@ -270,6 +283,34 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
 
             //Выполнение команды
             await command.ExecuteNonQueryAsync();
+
+            //Логгирование
+            _logger.LogInformation("{text} {params}", InformationMessages.ExecutedScript, filePath);
+        }
+        catch (Exception ex)
+        {
+            //Логгирование
+            _logger.LogError("{text} {params} из-за ошибки {ex}", ErrorMessages.NotExecutedScript, filePath, ex);
+        }
+    }
+
+    /// <summary>
+    /// Метод выполнения скрипта с контекстом
+    /// </summary>
+    /// <param cref="string" name="filePath">Путь к скрипту</param>
+    /// <param cref="DbContext" name="context">Контекст базы данных</param>
+    private async Task ExecuteScript(string filePath, DbContext context)
+    {
+        //Логгирование
+        _logger.LogInformation("{text} {params}", InformationMessages.ExecuteScript, filePath);
+
+        try
+        {
+            //Считывание запроса
+            string sql = File.ReadAllText(filePath);
+
+            //Выполнение sql-команды
+            await context.Database.ExecuteSqlRawAsync(sql);
 
             //Логгирование
             _logger.LogInformation("{text} {params}", InformationMessages.ExecutedScript, filePath);

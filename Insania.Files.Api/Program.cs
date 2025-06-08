@@ -28,7 +28,14 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 IServiceCollection services = builder.Services;
 
 //Получение конфигурации веб-приложения
-ConfigurationManager configuration = builder.Configuration;
+IConfiguration configuration = builder.Configuration
+    .AddJsonFile("appsettings.json", false, true)
+#if DEBUG
+    .AddJsonFile("appsettings.Development.json", true, false)
+#else
+    .AddJsonFile("appsettings.Production.json", true, false)
+#endif
+    .Build();
 
 //Введение переменных для токена
 var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["TokenSettings:Key"]!));

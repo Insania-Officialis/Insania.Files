@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Insania.Files.Entities\Insania.Files.Entities.csproj" />
+    <ProjectReference Include="..\Insania.Files.Models\Insania.Files.Models.csproj" />
   </ItemGroup>
 
 </Project>

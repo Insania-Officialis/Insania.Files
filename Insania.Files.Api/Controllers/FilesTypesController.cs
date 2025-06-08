@@ -29,7 +29,7 @@ public class FilesTypesController(ILogger<FilesTypesController> logger, IFilesTy
 
     #region Методы
     /// <summary>
-    /// Метод получения списка наций
+    /// Метод получения списка типов файлов
     /// </summary>
     /// <returns cref="OkResult">Список типов файлов</returns>
     /// <returns cref="BadRequestResult">Ошибка</returns>

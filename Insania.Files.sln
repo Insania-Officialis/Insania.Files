@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insania.Files.Initializer",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insania.Files.Api", "Insania.Files.Api\Insania.Files.Api.csproj", "{032FF840-D445-4102-BA1C-32422A58AC50}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insania.Files.Collections", "Insania.Files.Collections\Insania.Files.Collections.csproj", "{27E051AA-B467-496D-80B2-4E66A13AF495}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{032FF840-D445-4102-BA1C-32422A58AC50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{032FF840-D445-4102-BA1C-32422A58AC50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{032FF840-D445-4102-BA1C-32422A58AC50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27E051AA-B467-496D-80B2-4E66A13AF495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27E051AA-B467-496D-80B2-4E66A13AF495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27E051AA-B467-496D-80B2-4E66A13AF495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27E051AA-B467-496D-80B2-4E66A13AF495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

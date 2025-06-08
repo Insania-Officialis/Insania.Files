@@ -28,7 +28,7 @@ public class LoggingMiddleware(RequestDelegate next)
     /// <summary>
     /// Исключения, которым не нужно фиксировать тело запроса и ответа
     /// </summary>
-    private readonly static List<string> _exceptions = ["swagger"];
+    private readonly static List<string> _exceptions = ["swagger", "files/by_id"];
     #endregion
 
     #region Основные методы

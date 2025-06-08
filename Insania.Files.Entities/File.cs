@@ -1,7 +1,8 @@
-﻿using Insania.Shared.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
 using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection.Metadata;
+
+using Insania.Shared.Entities;
 
 namespace Insania.Files.Entities;
 
@@ -30,13 +31,15 @@ public class File : Reestr
     /// <param cref="bool" name="isSystem">Признак системной записи</param>
     /// <param cref="string" name="name">Наименование</param>
     /// <param cref="FileType" name="type">Идентификатор типа</param>
+    /// <param cref="long" name="entityId">Идентификатор сущности</param>
     /// <param cref="DateTime?" name="dateDeleted">Дата удаления</param>
-    public File(string username, bool isSystem, string name, FileType type, DateTime? dateDeleted = null) : base(username, isSystem, dateDeleted)
+    public File(string username, bool isSystem, string name, FileType type, long entityId, DateTime? dateDeleted = null) : base(username, isSystem, dateDeleted)
     {
         Name = name;
         TypeEntity = type;
         TypeId = type.Id;
         Extension = name[(name.LastIndexOf('.') + 1)..];
+        EntityId = entityId;
     }
 
     /// <summary>
@@ -47,13 +50,15 @@ public class File : Reestr
     /// <param cref="bool" name="isSystem">Признак системной записи</param>
     /// <param cref="string" name="name">Наименование</param>
     /// <param cref="FileType" name="type">Идентификатор типа</param>
+    /// <param cref="long" name="entityId">Идентификатор сущности</param>
     /// <param cref="DateTime?" name="dateDeleted">Дата удаления</param>
-    public File(long id, string username, bool isSystem, string name, FileType type, DateTime? dateDeleted = null) : base(id, username, isSystem, dateDeleted)
+    public File(long id, string username, bool isSystem, string name, FileType type, long entityId, DateTime? dateDeleted = null) : base(id, username, isSystem, dateDeleted)
     {
         Name = name;
         TypeEntity = type;
         TypeId = type.Id;
         Extension = name[(name.LastIndexOf('.') + 1)..];
+        EntityId = entityId;
     }
     #endregion
 
@@ -79,6 +84,13 @@ public class File : Reestr
     [Comment("Идентификатор типа")]
     [ForeignKey(nameof(TypeEntity))]
     public long TypeId { get; private set; }
+
+    /// <summary>
+    /// Идентификатор сущности
+    /// </summary>
+    [Column("entity_id")]
+    [Comment("Идентификатор сущности")]
+    public long EntityId { get; private set; }
     #endregion
 
     #region Навигационные свойства
@@ -107,6 +119,15 @@ public class File : Reestr
     {
         TypeId = type.Id;
         TypeEntity = type;
+    }
+
+    /// <summary>
+    /// Метод записи сущности
+    /// </summary>
+    /// <param cref="long" name="entityId">Идентификатор сущности</param>
+    public void SetEntity(long entityId)
+    {
+        EntityId = entityId;
     }
     #endregion
 }

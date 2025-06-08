@@ -23,7 +23,15 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args).ConfigureServices(async (hostContext, services) =>
     {
         //Добавление конфигурации в проект
-        IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", true, true).Build();
+        IConfiguration configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", false, true)
+#if DEBUG
+            .AddJsonFile("appsettings.Development.json", true, false)
+#else
+            .AddJsonFile("appsettings.Production.json", true, false)
+#endif
+            .Build();
+
 
         //Установка игнорирования типов даты и времени
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);

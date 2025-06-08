@@ -56,5 +56,37 @@ public class FilesTypesDAO(ILogger<FilesTypesDAO> logger, FilesContext context) 
         }
 
     }
+
+    /// <summary>
+    /// Метод получения типа файла по идентификатору
+    /// </summary>
+    /// <param cref="long?" name="id">Идентификатор типа файла</param>
+    /// <returns cref="FileType?">Тип файла</returns>
+    /// <exception cref="Exception">Исключение</exception>
+    public async Task<FileType?> GetById(long? id)
+    {
+        try
+        {
+            //Логгирование
+            _logger.LogInformation(InformationMessages.EnteredGetByIdFileTypeMethod);
+
+            //Проверки
+            if (id == null) throw new Exception(ErrorMessages.EmptyFileType);
+
+            //Получение данных из бд
+            FileType? data = await _context.FilesTypes.FirstOrDefaultAsync(x => x.Id == id);
+
+            //Возврат результата
+            return data;
+        }
+        catch (Exception ex)
+        {
+            //Логгирование
+            _logger.LogError("{text}: {error}", ErrorMessages.Error, ex.Message);
+
+            //Проброс исключения
+            throw;
+        }
+    }
     #endregion
 }
