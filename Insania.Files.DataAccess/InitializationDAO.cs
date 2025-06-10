@@ -200,8 +200,8 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                         ["18", "antorpozavr.png", "1", "15", ""],
                         ["19", "elvin.jpg", "1", "16", ""],
                         ["20", "danu.png", "1", "17", ""],
-                        ["21", "true_ichthyid.png", "1", "1", ""],
-                        ["22", "rejected_ichthyid.png", "2", "1", ""],
+                        ["21", "true_ichthyid.png", "2", "1", ""],
+                        ["22", "rejected_ichthyid.png", "2", "2", ""],
                     ];
 
                     //Проход по коллекции ключей
