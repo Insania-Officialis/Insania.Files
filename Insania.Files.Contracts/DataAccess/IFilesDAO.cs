@@ -23,10 +23,11 @@ public interface IFilesDAO
     Task<FileEntity?> GetById(long? id);
 
     /// <summary>
-    /// Метод получения списка файлов по идентификатору сущности
+    /// Метод получения списка файлов по идентификатору сущности и идентификатору типа
     /// </summary>
     /// <param cref="long?" name="entityId">Идентификатор сущности</param>
+    /// <param cref="long?" name="typeId">Идентификатор типа</param>
     /// <returns cref="List{FileEntity}">Список файлов</returns>
     /// <exception cref="Exception">Исключение</exception>
-    Task<List<FileEntity>> GetList(long? entityId);
+    Task<List<FileEntity>> GetList(long? entityId, long? typeId);
 }

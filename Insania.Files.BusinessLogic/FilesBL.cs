@@ -109,13 +109,14 @@ public class FilesBL(ILogger<FilesBL> logger, IMapper mapper, IFilesDAO filesDAO
     }
 
     /// <summary>
-    /// Метод получения списка файлов по идентификатору сущности
+    /// Метод получения списка файлов по идентификатору сущности и идентификатору типа
     /// </summary>
     /// <param cref="long?" name="entityId">Идентификатор сущности</param>
+    /// <param cref="long?" name="typeId">Идентификатор типа</param>
     /// <returns cref="BaseResponseList">Стандартный ответ списком</returns>
     /// <remarks>Список идентификатор файлов</remarks>
     /// <exception cref="Exception">Исключение</exception>
-    public async Task<BaseResponseList?> GetList(long? entityId)
+    public async Task<BaseResponseList?> GetList(long? entityId, long? typeId)
     {
         try
         {
@@ -124,9 +125,10 @@ public class FilesBL(ILogger<FilesBL> logger, IMapper mapper, IFilesDAO filesDAO
 
             //Проверки
             if (entityId == null) throw new Exception(ErrorMessages.EmptyEntity);
+            if (typeId == null) throw new Exception(ErrorMessages.EmptyFileType);
 
             //Получение данных
-            List<FileEntity> data = await _filesDAO.GetList(entityId);
+            List<FileEntity> data = await _filesDAO.GetList(entityId, typeId);
 
             //Формирование ответа
             BaseResponseList? response = null;

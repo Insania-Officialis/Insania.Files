@@ -89,12 +89,13 @@ public class FilesDAO(ILogger<FilesDAO> logger, FilesContext context) : IFilesDA
     }
 
     /// <summary>
-    /// Метод получения списка файлов по идентификатору сущности
+    /// Метод получения списка файлов по идентификатору сущности и идентификатору типа
     /// </summary>
     /// <param cref="long?" name="entityId">Идентификатор сущности</param>
+    /// <param cref="long?" name="typeId">Идентификатор типа</param>
     /// <returns cref="List{FileEntity}">Список файлов</returns>
     /// <exception cref="Exception">Исключение</exception>
-    public async Task<List<FileEntity>> GetList(long? entityId)
+    public async Task<List<FileEntity>> GetList(long? entityId, long? typeId)
     {
         try
         {
@@ -103,9 +104,14 @@ public class FilesDAO(ILogger<FilesDAO> logger, FilesContext context) : IFilesDA
 
             //Проверки
             if (entityId == null) throw new Exception(ErrorMessages.EmptyEntity);
+            if (typeId == null) throw new Exception(ErrorMessages.EmptyFileType);
 
             //Получение данных из бд
-            List<FileEntity> data = await _context.Files.Where(x => x.DateDeleted == null && x.EntityId == entityId).ToListAsync();
+            List<FileEntity> data = await _context.Files.Where(
+                x => x.DateDeleted == null
+                && x.EntityId == entityId
+                && x.TypeId == typeId
+            ).ToListAsync();
 
             //Возврат результата
             return data;

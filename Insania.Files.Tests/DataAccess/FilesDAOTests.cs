@@ -103,32 +103,37 @@ public class FilesDAOTests : BaseTest
     /// Тест метода получения списка файлов по идентификатору сущности
     /// </summary>
     /// <param cref="long?" name="entityId">Идентификатор сущности</param>
-    [TestCase(null)]
-    [TestCase(-1)]
-    [TestCase(1)]
-    [TestCase(2)]
-    public async Task GetListTest(long? id)
+    /// <param cref="long?" name="typeId">Идентификатор типа</param>
+    [TestCase(null, null)]
+    [TestCase(-1, null)]
+    [TestCase(-1, 1)]
+    [TestCase(1, -1)]
+    [TestCase(1, 3)]
+    [TestCase(1, 1)]
+    [TestCase(2, 1)]
+    public async Task GetListTest(long? entityId, long? typeId)
     {
         try
         {
             //Получение результата
-            List<FileEntity> result = await FilesDAO.GetList(id);
+            List<FileEntity> result = await FilesDAO.GetList(entityId ,typeId);
 
             //Проверка результата
             Assert.That(result, Is.Not.Null);
-            switch (id)
+            switch (entityId, typeId)
             {
-                case -1: case 2: Assert.That(result, Is.Empty); break;
-                case 1: Assert.That(result, Is.Not.Empty); break;
+                case (-1, 1): case (2, 1): case (1, -1): case (1, 3): Assert.That(result, Is.Empty); break;
+                case (1, 1): Assert.That(result, Is.Not.Empty); break;
                 default: throw new Exception(ErrorMessages.NotFoundTestCase);
             }
         }
         catch (Exception ex)
         {
             //Проверка исключения
-            switch (id)
+            switch (entityId, typeId)
             {
-                case null: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.EmptyEntity)); break;
+                case (null, null): Assert.That(ex.Message, Is.EqualTo(ErrorMessages.EmptyEntity)); break;
+                case (-1, null): Assert.That(ex.Message, Is.EqualTo(ErrorMessages.EmptyFileType)); break;
                 default: throw;
             }
         }

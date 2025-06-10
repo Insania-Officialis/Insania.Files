@@ -18,11 +18,12 @@ public interface IFilesBL
     Task<FileResponse?> GetById(long? id);
 
     /// <summary>
-    /// Метод получения списка файлов по идентификатору сущности
+    /// Метод получения списка файлов по идентификатору сущности и идентификатору типа
     /// </summary>
     /// <param cref="long?" name="entityId">Идентификатор сущности</param>
+    /// <param cref="long?" name="typeId">Идентификатор типа</param>
     /// <returns cref="BaseResponseList">Стандартный ответ списком</returns>
     /// <remarks>Список идентификатор файлов</remarks>
     /// <exception cref="Exception">Исключение</exception>
-    Task<BaseResponseList?> GetList(long? entityId);
+    Task<BaseResponseList?> GetList(long? entityId, long? typeId);
 }

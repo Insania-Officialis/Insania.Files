@@ -62,19 +62,20 @@ public class FilesController(ILogger<FilesController> logger, IFilesBL filesServ
     }
 
     /// <summary>
-    /// Метод получения списка файлов по идентификатору сущности
+    /// Метод получения списка файлов по идентификатору сущности и идентификатору типа
     /// </summary>
     /// <param cref="long" name="entity_id">Идентификатор сущности</param>
+    /// <param cref="long" name="type_id">Идентификатор типа</param>
     /// <returns cref="OkResult">Список файлов</returns>
     /// <returns cref="BadRequestResult">Ошибка</returns>
     [HttpGet]
     [Route("list")]
-    public async Task<IActionResult> GetList([FromQuery] long? entity_id)
+    public async Task<IActionResult> GetList([FromQuery] long? entity_id, [FromQuery] long? type_id)
     {
         try
         {
             //Получение результата проверки логина
-            BaseResponseList? result = await _filesService.GetList(entity_id);
+            BaseResponseList? result = await _filesService.GetList(entity_id, type_id);
 
             //Возврат ответа
             return Ok(result);
