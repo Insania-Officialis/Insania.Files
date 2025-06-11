@@ -136,6 +136,7 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                         new(_transliteration, 1, _username, "Расы", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
                         new(_transliteration, 2, _username, "Нации", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
                         new(_transliteration, 3, _username, "Удалённый", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles", DateTime.UtcNow),
+                        new(_transliteration, 4, _username, "Страны", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
                     ];
 
                     //Проход по коллекции сущностей
@@ -202,6 +203,29 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                         ["20", "danu.png", "1", "17", ""],
                         ["21", "true_ichthyid.png", "2", "1", ""],
                         ["22", "rejected_ichthyid.png", "2", "2", ""],
+                        //to do 23-79 идентификаторы под изображения наций
+                        ["80", "alvraat_empire.png", "4", "1", ""],
+                        ["81", "principality_saorsa.png", "4", "2", ""],
+                        ["82", "kingdom_bergen.png", "4", "3", ""],
+                        ["83", "fesgar_principality.png", "4", "4", ""],
+                        ["84", "sverdensky_kaganate.png", "4", "5", ""],
+                        ["85", "khanate_tavalin.png", "4", "6", ""],
+                        ["86", "principality_sargib.png", "4", "7", ""],
+                        ["87", "raj_bandu.png", "4", "8", ""],
+                        ["88", "kingdom_norder.png", "4", "9", ""],
+                        ["89", "alter_principality.png", "4", "10", ""],
+                        ["90", "orliadar_confederation.png", "4", "11", ""],
+                        ["91", "kingdom_udstir.png", "4", "12", ""],
+                        ["92", "kingdom_vervirung.png", "4", "13", ""],
+                        ["93", "destin_order.png", "4", "14", ""],
+                        ["94", "free_city_liyset.png", "4", "15", ""],
+                        ["95", "liscian_empire.png", "4", "16", ""],
+                        ["96", "kingdom_valtir.png", "4", "17", ""],
+                        ["97", "vassal_principality_gratis.png", "4", "18", ""],
+                        ["98", "principality_rekta.png", "4", "19", ""],
+                        ["99", "volar.png", "4", "20", ""],
+                        ["100", "union_il_ladro.png", "4", "21", ""],
+                        ["101", "merger_union.png", "4", "22", ""]
                     ];
 
                     //Проход по коллекции ключей
