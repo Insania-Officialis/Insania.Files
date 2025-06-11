@@ -54,12 +54,12 @@ public abstract class BaseTest
         //Внедрение зависимостей сервисов
         services.AddSingleton(_ => configuration); //конфигурация
         services.AddScoped<ITransliterationSL, TransliterationSL>(); //сервис транслитерации
-        services.AddScoped<IInitializationDAO, InitializationDAO>(); //сервис инициализации данных в бд пользователей
-        services.AddFilesBL(); //сервисы работы с бизнес-логикой в зоне пользователей
+        services.AddScoped<IInitializationDAO, InitializationDAO>(); //сервис инициализации данных в бд файлов
+        services.AddFilesBL(); //сервисы работы с бизнес-логикой в зоне файлов
 
         //Добавление контекстов бд в коллекцию сервисов
-        services.AddDbContext<FilesContext>(options => options.UseInMemoryDatabase(databaseName: "insania_files").ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))); //бд пользователей
-        services.AddDbContext<LogsApiFilesContext>(options => options.UseInMemoryDatabase(databaseName: "insania_logs_api_files").ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))); //бд логов сервиса пользователей
+        services.AddDbContext<FilesContext>(options => options.UseInMemoryDatabase(databaseName: "insania_files").ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))); //бд файлов
+        services.AddDbContext<LogsApiFilesContext>(options => options.UseInMemoryDatabase(databaseName: "insania_logs_api_files").ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))); //бд логов сервиса файлов
 
         //Добавление параметров логирования
         Log.Logger = new LoggerConfiguration()
