@@ -137,6 +137,7 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                         new(_transliteration, 2, _username, "Нации", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
                         new(_transliteration, 3, _username, "Удалённый", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles", DateTime.UtcNow),
                         new(_transliteration, 4, _username, "Страны", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
+                        new(_transliteration, 5, _username, "Фракции", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
                     ];
 
                     //Проход по коллекции сущностей
@@ -225,7 +226,15 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                         ["98", "principality_rekta.png", "4", "19", ""],
                         ["99", "volar.png", "4", "20", ""],
                         ["100", "union_il_ladro.png", "4", "21", ""],
-                        ["101", "merger_union.png", "4", "22", ""]
+                        ["102", "government.png", "5", "2", ""],
+                        ["103", "aristocracy.png", "5", "3", ""],
+                        ["104", "clergy.png", "5", "4", ""],
+                        ["105", "magicians.png", "5", "5", ""],
+                        ["106", "military.png", "5", "6", ""],
+                        ["107", "merchants.png", "5", "7", ""],
+                        ["108", "criminality.png", "5", "8", ""],
+                        ["109", "intelligentsia.png", "5", "9", ""],
+                        ["110", "factionless.png", "5", "10", ""],
                     ];
 
                     //Проход по коллекции ключей
