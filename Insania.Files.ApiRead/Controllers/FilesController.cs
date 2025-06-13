@@ -3,10 +3,13 @@
 using Insania.Shared.Models.Responses.Base;
 
 using Insania.Files.Contracts.BusinessLogic;
-using Insania.Files.Messages;
 using Insania.Files.Models.Responses;
 
-namespace Insania.Files.Api.Controllers;
+using ErrorMessagesShared = Insania.Shared.Messages.ErrorMessages;
+
+using ErrorMessagesFiles = Insania.Files.Messages.ErrorMessages;
+
+namespace Insania.Files.ApiRead.Controllers;
 
 /// <summary>
 /// Контроллер работы с файлов
@@ -42,11 +45,11 @@ public class FilesController(ILogger<FilesController> logger, IFilesBL filesServ
         try
         {
             //Получение результата проверки логина
-            FileResponse? result = await _filesService.GetById(id) ?? throw new Exception(ErrorMessages.NotFoundFile);
+            FileResponse? result = await _filesService.GetById(id) ?? throw new Exception(ErrorMessagesFiles.NotFoundFile);
 
             //Проверки результата
-            if (result.Stream == null) throw new Exception(ErrorMessages.NotFoundFile);
-            if (result.ContentType == null) throw new Exception(ErrorMessages.IncorrectContentType);
+            if (result.Stream == null) throw new Exception(ErrorMessagesFiles.NotFoundFile);
+            if (result.ContentType == null) throw new Exception(ErrorMessagesFiles.IncorrectContentType);
 
             //Возврат ответа
             return File(result.Stream, result.ContentType);
@@ -54,7 +57,7 @@ public class FilesController(ILogger<FilesController> logger, IFilesBL filesServ
         catch (Exception ex)
         {
             //Логгирование
-            _logger.LogError("{text} {ex}", ErrorMessages.Error, ex);
+            _logger.LogError("{text} {ex}", ErrorMessagesShared.Error, ex);
 
             //Возврат ошибки
             return BadRequest(new BaseResponseError(ex.Message));
@@ -83,7 +86,7 @@ public class FilesController(ILogger<FilesController> logger, IFilesBL filesServ
         catch (Exception ex)
         {
             //Логгирование
-            _logger.LogError("{text} {ex}", ErrorMessages.Error, ex);
+            _logger.LogError("{text} {ex}", ErrorMessagesShared.Error, ex);
 
             //Возврат ошибки
             return BadRequest(new BaseResponseError(ex.Message));

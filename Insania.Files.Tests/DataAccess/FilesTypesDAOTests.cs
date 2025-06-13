@@ -4,7 +4,10 @@ using Insania.Files.Contracts.DataAccess;
 using Insania.Files.Tests.Base;
 
 using Insania.Files.Entities;
-using Insania.Files.Messages;
+
+using ErrorMessagesShared = Insania.Shared.Messages.ErrorMessages;
+
+using ErrorMessagesFiles = Insania.Files.Messages.ErrorMessages;
 
 namespace Insania.Files.Tests.DataAccess;
 
@@ -85,7 +88,7 @@ public class FilesTypesDAOTests : BaseTest
             {
                 case -1: Assert.That(result, Is.Null); break;
                 case 1: case 3: Assert.That(result, Is.Not.Null); break;
-                default: throw new Exception(ErrorMessages.NotFoundTestCase);
+                default: throw new Exception(ErrorMessagesShared.NotFoundTestCase);
             }
         }
         catch (Exception ex)
@@ -93,7 +96,7 @@ public class FilesTypesDAOTests : BaseTest
             //Проверка исключения
             switch (id)
             {
-                case null: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.EmptyFileType)); break;
+                case null: Assert.That(ex.Message, Is.EqualTo(ErrorMessagesFiles.EmptyFileType)); break;
                 default: throw;
             }
         }

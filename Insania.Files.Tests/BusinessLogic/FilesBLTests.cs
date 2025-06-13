@@ -3,9 +3,12 @@
 using Insania.Shared.Models.Responses.Base;
 
 using Insania.Files.Contracts.BusinessLogic;
-using Insania.Files.Messages;
 using Insania.Files.Models.Responses;
 using Insania.Files.Tests.Base;
+
+using ErrorMessagesShared = Insania.Shared.Messages.ErrorMessages;
+
+using ErrorMessagesFiles = Insania.Files.Messages.ErrorMessages;
 
 namespace Insania.Files.Tests.BusinessLogic;
 
@@ -72,7 +75,7 @@ public class FilesBLTests : BaseTest
             switch (id)
             {
                 case 1: Assert.That(result.ContentType, Is.EqualTo("image/png")); break;
-                default: throw new Exception(ErrorMessages.NotFoundTestCase);
+                default: throw new Exception(ErrorMessagesShared.NotFoundTestCase);
             }
         }
         catch (Exception ex)
@@ -80,11 +83,11 @@ public class FilesBLTests : BaseTest
             //Проверка исключения
             switch (id)
             {
-                case null: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.EmptyFile)); break;
-                case -1: case 2: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.NotFoundFile)); break;
-                case 3: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.IncorrectContentType)); break;
-                case 4: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.DeletedFileType)); break;
-                case 5: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.DeletedFile)); break;
+                case null: Assert.That(ex.Message, Is.EqualTo(ErrorMessagesFiles.EmptyFile)); break;
+                case -1: case 2: Assert.That(ex.Message, Is.EqualTo(ErrorMessagesFiles.NotFoundFile)); break;
+                case 3: Assert.That(ex.Message, Is.EqualTo(ErrorMessagesFiles.IncorrectContentType)); break;
+                case 4: Assert.That(ex.Message, Is.EqualTo(ErrorMessagesFiles.DeletedFileType)); break;
+                case 5: Assert.That(ex.Message, Is.EqualTo(ErrorMessagesFiles.DeletedFile)); break;
                 default: throw;
             }
         }
@@ -116,7 +119,7 @@ public class FilesBLTests : BaseTest
             {
                 case (-1, 1): case (2, 1): case (1, -1): case (1, 3): Assert.That(result.Items, Is.Empty); break;
                 case (1, 1): Assert.That(result.Items, Is.Not.Empty); break;
-                default: throw new Exception(ErrorMessages.NotFoundTestCase);
+                default: throw new Exception(ErrorMessagesShared.NotFoundTestCase);
             }
         }
         catch (Exception ex)
@@ -124,8 +127,8 @@ public class FilesBLTests : BaseTest
             //Проверка исключения
             switch (entityId, typeId)
             {
-                case (null, null): Assert.That(ex.Message, Is.EqualTo(ErrorMessages.EmptyEntity)); break;
-                case (-1, null): Assert.That(ex.Message, Is.EqualTo(ErrorMessages.EmptyFileType)); break;
+                case (null, null): Assert.That(ex.Message, Is.EqualTo(ErrorMessagesFiles.EmptyEntity)); break;
+                case (-1, null): Assert.That(ex.Message, Is.EqualTo(ErrorMessagesFiles.EmptyFileType)); break;
                 default: throw;
             }
         }

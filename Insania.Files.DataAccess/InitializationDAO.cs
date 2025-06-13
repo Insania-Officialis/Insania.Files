@@ -13,11 +13,14 @@ using Insania.Shared.Contracts.Services;
 
 using Insania.Files.Database.Contexts;
 using Insania.Files.Entities;
-using Insania.Files.Messages;
 using Insania.Files.Models.Settings;
 
 using File = System.IO.File;
 
+using ErrorMessagesShared = Insania.Shared.Messages.ErrorMessages;
+using InformationMessages = Insania.Shared.Messages.InformationMessages;
+
+using ErrorMessagesFiles = Insania.Files.Messages.ErrorMessages;
 using FileEntity = Insania.Files.Entities.File;
 
 namespace Insania.Files.DataAccess;
@@ -91,9 +94,9 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                 if (_settings.Value.Databases?.Files == true)
                 {
                     //Формирование параметров
-                    string connectionServer = _configuration.GetConnectionString("FilesSever") ?? throw new Exception(ErrorMessages.EmptyConnectionString);
+                    string connectionServer = _configuration.GetConnectionString("FilesSever") ?? throw new Exception(ErrorMessagesShared.EmptyConnectionString);
                     string patternDatabases = @"^databases_files_\d+\.sql$";
-                    string connectionDatabase = _configuration.GetConnectionString("FilesEmpty") ?? throw new Exception(ErrorMessages.EmptyConnectionString);
+                    string connectionDatabase = _configuration.GetConnectionString("FilesEmpty") ?? throw new Exception(ErrorMessagesShared.EmptyConnectionString);
                     string patternSchemes = @"^schemes_files_\d+\.sql$";
 
                     //Создание базы данных
@@ -102,9 +105,9 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                 if (_settings.Value.Databases?.LogsApiFiles == true)
                 {
                     //Формирование параметров
-                    string connectionServer = _configuration.GetConnectionString("LogsApiFilesServer") ?? throw new Exception(ErrorMessages.EmptyConnectionString);
+                    string connectionServer = _configuration.GetConnectionString("LogsApiFilesServer") ?? throw new Exception(ErrorMessagesShared.EmptyConnectionString);
                     string patternDatabases = @"^databases_logs_api_files_\d+\.sql$";
-                    string connectionDatabase = _configuration.GetConnectionString("LogsApiFilesEmpty") ?? throw new Exception(ErrorMessages.EmptyConnectionString);
+                    string connectionDatabase = _configuration.GetConnectionString("LogsApiFilesEmpty") ?? throw new Exception(ErrorMessagesShared.EmptyConnectionString);
                     string patternSchemes = @"^schemes_logs_api_files_\d+\.sql$";
 
                     //Создание базы данных
@@ -120,7 +123,7 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
             if (_logsApiFilesContext.Database.IsRelational()) await _logsApiFilesContext.Database.MigrateAsync();
 
             //Проверки
-            if (string.IsNullOrWhiteSpace(_settings.Value.ScriptsPath)) throw new Exception(ErrorMessages.EmptyScriptsPath);
+            if (string.IsNullOrWhiteSpace(_settings.Value.ScriptsPath)) throw new Exception(ErrorMessagesShared.EmptyScriptsPath);
 
             //Инициализация данных в зависимости от параметров
             if (_settings.Value.Tables?.FilesTypes == true)
@@ -244,7 +247,7 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                         if (!_filesContext.Files.Any(x => x.Id == long.Parse(key[0])))
                         {
                             //Получение сущностей
-                            FileType fileType = await _filesContext.FilesTypes.FirstOrDefaultAsync(x => x.Id == long.Parse(key[2])) ?? throw new Exception(ErrorMessages.NotFoundFileType);
+                            FileType fileType = await _filesContext.FilesTypes.FirstOrDefaultAsync(x => x.Id == long.Parse(key[2])) ?? throw new Exception(ErrorMessagesFiles.NotFoundFileType);
 
                             //Создание сущности
                             DateTime? dateDeleted = null;
@@ -275,7 +278,7 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
         catch (Exception ex)
         {
             //Логгирование
-            _logger.LogError("{text}: {error}", ErrorMessages.Error, ex.Message);
+            _logger.LogError("{text}: {error}", ErrorMessagesShared.Error, ex.Message);
 
             //Проброс исключения
             throw;
@@ -340,7 +343,7 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
         catch (Exception ex)
         {
             //Логгирование
-            _logger.LogError("{text} {params} из-за ошибки {ex}", ErrorMessages.NotExecutedScript, filePath, ex);
+            _logger.LogError("{text} {params} из-за ошибки {ex}", ErrorMessagesShared.NotExecutedScript, filePath, ex);
         }
     }
 
@@ -368,7 +371,7 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
         catch (Exception ex)
         {
             //Логгирование
-            _logger.LogError("{text} {params} из-за ошибки {ex}", ErrorMessages.NotExecutedScript, filePath, ex);
+            _logger.LogError("{text} {params} из-за ошибки {ex}", ErrorMessagesShared.NotExecutedScript, filePath, ex);
         }
     }
     #endregion

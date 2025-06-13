@@ -3,9 +3,10 @@
 using Insania.Shared.Models.Responses.Base;
 
 using Insania.Files.Contracts.BusinessLogic;
-using Insania.Files.Messages;
 
-namespace Insania.Files.Api.Controllers;
+using ErrorMessages = Insania.Shared.Messages.ErrorMessages;
+
+namespace Insania.Files.ApiRead.Controllers;
 
 /// <summary>
 /// Контроллер работы с типами файлов

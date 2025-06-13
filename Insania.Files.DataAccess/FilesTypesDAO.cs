@@ -4,7 +4,11 @@ using Microsoft.Extensions.Logging;
 using Insania.Files.Contracts.DataAccess;
 using Insania.Files.Database.Contexts;
 using Insania.Files.Entities;
-using Insania.Files.Messages;
+
+using ErrorMessagesShared = Insania.Shared.Messages.ErrorMessages;
+
+using ErrorMessagesFiles = Insania.Files.Messages.ErrorMessages;
+using InformationMessages = Insania.Files.Messages.InformationMessages;
 
 namespace Insania.Files.DataAccess;
 
@@ -49,7 +53,7 @@ public class FilesTypesDAO(ILogger<FilesTypesDAO> logger, FilesContext context) 
         catch (Exception ex)
         {
             //Логгирование
-            _logger.LogError("{text}: {error}", ErrorMessages.Error, ex.Message);
+            _logger.LogError("{text}: {error}", ErrorMessagesShared.Error, ex.Message);
 
             //Проброс исключения
             throw;
@@ -71,7 +75,7 @@ public class FilesTypesDAO(ILogger<FilesTypesDAO> logger, FilesContext context) 
             _logger.LogInformation(InformationMessages.EnteredGetByIdFileTypeMethod);
 
             //Проверки
-            if (id == null) throw new Exception(ErrorMessages.EmptyFileType);
+            if (id == null) throw new Exception(ErrorMessagesFiles.EmptyFileType);
 
             //Получение данных из бд
             FileType? data = await _context.FilesTypes.FirstOrDefaultAsync(x => x.Id == id);
@@ -82,7 +86,7 @@ public class FilesTypesDAO(ILogger<FilesTypesDAO> logger, FilesContext context) 
         catch (Exception ex)
         {
             //Логгирование
-            _logger.LogError("{text}: {error}", ErrorMessages.Error, ex.Message);
+            _logger.LogError("{text}: {error}", ErrorMessagesShared.Error, ex.Message);
 
             //Проброс исключения
             throw;

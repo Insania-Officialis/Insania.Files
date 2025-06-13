@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
 using Insania.Files.Contracts.DataAccess;
-using Insania.Files.Messages;
 using Insania.Files.Tests.Base;
 
+using ErrorMessagesShared = Insania.Shared.Messages.ErrorMessages;
+
+using ErrorMessagesFiles = Insania.Files.Messages.ErrorMessages;
 using FileEntity = Insania.Files.Entities.File;
 
 namespace Insania.Files.Tests.DataAccess;
@@ -85,7 +87,7 @@ public class FilesDAOTests : BaseTest
             {
                 case -1: Assert.That(result, Is.Null); break;
                 case 1: case 2: Assert.That(result, Is.Not.Null); break;
-                default: throw new Exception(ErrorMessages.NotFoundTestCase);
+                default: throw new Exception(ErrorMessagesShared.NotFoundTestCase);
             }
         }
         catch (Exception ex)
@@ -93,7 +95,7 @@ public class FilesDAOTests : BaseTest
             //Проверка исключения
             switch (id)
             {
-                case null: Assert.That(ex.Message, Is.EqualTo(ErrorMessages.EmptyFile)); break;
+                case null: Assert.That(ex.Message, Is.EqualTo(ErrorMessagesFiles.EmptyFile)); break;
                 default: throw;
             }
         }
@@ -124,7 +126,7 @@ public class FilesDAOTests : BaseTest
             {
                 case (-1, 1): case (2, 1): case (1, -1): case (1, 3): Assert.That(result, Is.Empty); break;
                 case (1, 1): Assert.That(result, Is.Not.Empty); break;
-                default: throw new Exception(ErrorMessages.NotFoundTestCase);
+                default: throw new Exception(ErrorMessagesShared.NotFoundTestCase);
             }
         }
         catch (Exception ex)
@@ -132,8 +134,8 @@ public class FilesDAOTests : BaseTest
             //Проверка исключения
             switch (entityId, typeId)
             {
-                case (null, null): Assert.That(ex.Message, Is.EqualTo(ErrorMessages.EmptyEntity)); break;
-                case (-1, null): Assert.That(ex.Message, Is.EqualTo(ErrorMessages.EmptyFileType)); break;
+                case (null, null): Assert.That(ex.Message, Is.EqualTo(ErrorMessagesFiles.EmptyEntity)); break;
+                case (-1, null): Assert.That(ex.Message, Is.EqualTo(ErrorMessagesFiles.EmptyFileType)); break;
                 default: throw;
             }
         }

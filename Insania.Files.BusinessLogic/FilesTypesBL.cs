@@ -9,6 +9,8 @@ using Insania.Files.Contracts.DataAccess;
 using Insania.Files.Entities;
 using Insania.Files.Messages;
 
+using ErrorMessages = Insania.Shared.Messages.ErrorMessages;
+
 namespace Insania.Files.BusinessLogic;
 
 /// <summary>

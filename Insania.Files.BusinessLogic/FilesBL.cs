@@ -8,12 +8,15 @@ using Insania.Files.Collections;
 using Insania.Files.Contracts.BusinessLogic;
 using Insania.Files.Contracts.DataAccess;
 using Insania.Files.Entities;
-using Insania.Files.Messages;
 using Insania.Files.Models.Responses;
 
 using File = System.IO.File;
 
+using ErrorMessagesShared = Insania.Shared.Messages.ErrorMessages;
+
+using ErrorMessagesFiles = Insania.Files.Messages.ErrorMessages;
 using FileEntity = Insania.Files.Entities.File;
+using InformationMessages = Insania.Files.Messages.InformationMessages;
 
 namespace Insania.Files.BusinessLogic;
 
@@ -63,31 +66,31 @@ public class FilesBL(ILogger<FilesBL> logger, IMapper mapper, IFilesDAO filesDAO
             _logger.LogInformation(InformationMessages.EnteredGetByIdFileMethod);
 
             //Проверки
-            if (id == null) throw new Exception(ErrorMessages.EmptyFile);
+            if (id == null) throw new Exception(ErrorMessagesFiles.EmptyFile);
 
             //Получение данных
-            FileEntity? data = await _filesDAO.GetById(id) ?? throw new Exception(ErrorMessages.NotFoundFile);
+            FileEntity? data = await _filesDAO.GetById(id) ?? throw new Exception(ErrorMessagesFiles.NotFoundFile);
 
             //Проверки данных
-            if (data.DateDeleted != null) throw new Exception(ErrorMessages.DeletedFile);
+            if (data.DateDeleted != null) throw new Exception(ErrorMessagesFiles.DeletedFile);
 
             //Получение типа файла
-            FileType type = await _filesTypesDAO.GetById(data.TypeId) ?? throw new Exception(ErrorMessages.EmptyFileType);
+            FileType type = await _filesTypesDAO.GetById(data.TypeId) ?? throw new Exception(ErrorMessagesFiles.EmptyFileType);
 
             //Проверки данных
-            if (type.DateDeleted != null) throw new Exception(ErrorMessages.DeletedFileType);
+            if (type.DateDeleted != null) throw new Exception(ErrorMessagesFiles.DeletedFileType);
 
             //Определение типа контента
             ContentTypes.Values.TryGetValue(data.Extension, out string? contentType);
 
             //Проверки данных
-            if (string.IsNullOrWhiteSpace(contentType)) throw new Exception(ErrorMessages.IncorrectContentType);
+            if (string.IsNullOrWhiteSpace(contentType)) throw new Exception(ErrorMessagesFiles.IncorrectContentType);
 
             //Формирование пути к файлу
             string filePath = Path.Combine(type.Path, type.Alias, data.EntityId.ToString(), data.Name);
 
             //Проверка наличия файла
-            if (!File.Exists(filePath)) throw new Exception(ErrorMessages.NotFoundFile);
+            if (!File.Exists(filePath)) throw new Exception(ErrorMessagesFiles.NotFoundFile);
 
             //Формирование потока файла
             FileStream stream = new(filePath, FileMode.Open);
@@ -101,7 +104,7 @@ public class FilesBL(ILogger<FilesBL> logger, IMapper mapper, IFilesDAO filesDAO
         catch (Exception ex)
         {
             //Логгирование
-            _logger.LogError("{text}: {error}", ErrorMessages.Error, ex.Message);
+            _logger.LogError("{text}: {error}", ErrorMessagesShared.Error, ex.Message);
 
             //Проброс исключения
             throw;
@@ -124,8 +127,8 @@ public class FilesBL(ILogger<FilesBL> logger, IMapper mapper, IFilesDAO filesDAO
             _logger.LogInformation(InformationMessages.EnteredGetListFilesMethod);
 
             //Проверки
-            if (entityId == null) throw new Exception(ErrorMessages.EmptyEntity);
-            if (typeId == null) throw new Exception(ErrorMessages.EmptyFileType);
+            if (entityId == null) throw new Exception(ErrorMessagesFiles.EmptyEntity);
+            if (typeId == null) throw new Exception(ErrorMessagesFiles.EmptyFileType);
 
             //Получение данных
             List<FileEntity> data = await _filesDAO.GetList(entityId, typeId);
@@ -141,7 +144,7 @@ public class FilesBL(ILogger<FilesBL> logger, IMapper mapper, IFilesDAO filesDAO
         catch (Exception ex)
         {
             //Логгирование
-            _logger.LogError("{text}: {error}", ErrorMessages.Error, ex.Message);
+            _logger.LogError("{text}: {error}", ErrorMessagesShared.Error, ex.Message);
 
             //Проброс исключения
             throw;

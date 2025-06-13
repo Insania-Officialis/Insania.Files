@@ -13,11 +13,11 @@ using Serilog;
 
 using Insania.Shared.Contracts.Services;
 using Insania.Shared.Middleware;
+using Insania.Shared.Messages;
 using Insania.Shared.Services;
 
 using Insania.Files.BusinessLogic;
 using Insania.Files.Database.Contexts;
-using Insania.Files.Messages;
 using Insania.Files.Middleware;
 using Insania.Files.Models.Mapper;
 
@@ -119,7 +119,7 @@ services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "Insania API", Version = "v1" });
 
-    var filePath = Path.Combine(AppContext.BaseDirectory, "Insania.Files.Api.xml");
+    var filePath = Path.Combine(AppContext.BaseDirectory, "Insania.Files.ApiRead.xml");
     options.IncludeXmlComments(filePath);
 
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

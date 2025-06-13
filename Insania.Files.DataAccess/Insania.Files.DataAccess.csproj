@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Insania.Shared.Contracts" Version="1.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.6" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.6" />
   </ItemGroup>
 

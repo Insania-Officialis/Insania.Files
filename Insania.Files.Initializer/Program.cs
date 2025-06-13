@@ -8,11 +8,11 @@ using Serilog;
 
 using Insania.Shared.Contracts.DataAccess;
 using Insania.Shared.Contracts.Services;
+using Insania.Shared.Messages;
 using Insania.Shared.Services;
 
 using Insania.Files.DataAccess;
 using Insania.Files.Database.Contexts;
-using Insania.Files.Messages;
 using Insania.Files.Models.Settings;
 
 //Запуск хоста

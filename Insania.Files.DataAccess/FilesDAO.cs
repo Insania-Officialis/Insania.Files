@@ -1,10 +1,14 @@
-﻿using Insania.Files.Contracts.DataAccess;
-using Insania.Files.Database.Contexts;
-using Insania.Files.Entities;
-using Insania.Files.Messages;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+
+using Insania.Files.Contracts.DataAccess;
+using Insania.Files.Database.Contexts;
+
+using ErrorMessagesShared = Insania.Shared.Messages.ErrorMessages;
+
+using ErrorMessagesFiles = Insania.Files.Messages.ErrorMessages;
 using FileEntity = Insania.Files.Entities.File;
+using InformationMessages = Insania.Files.Messages.InformationMessages;
 
 namespace Insania.Files.DataAccess;
 
@@ -49,7 +53,7 @@ public class FilesDAO(ILogger<FilesDAO> logger, FilesContext context) : IFilesDA
         catch (Exception ex)
         {
             //Логгирование
-            _logger.LogError("{text}: {error}", ErrorMessages.Error, ex.Message);
+            _logger.LogError("{text}: {error}", ErrorMessagesShared.Error, ex.Message);
 
             //Проброс исключения
             throw;
@@ -70,7 +74,7 @@ public class FilesDAO(ILogger<FilesDAO> logger, FilesContext context) : IFilesDA
             _logger.LogInformation(InformationMessages.EnteredGetByIdFileMethod);
 
             //Проверки
-            if (id == null) throw new Exception(ErrorMessages.EmptyFile);
+            if (id == null) throw new Exception(ErrorMessagesFiles.EmptyFile);
 
             //Получение данных из бд
             FileEntity? data = await _context.Files.FirstOrDefaultAsync(x => x.Id == id);
@@ -81,7 +85,7 @@ public class FilesDAO(ILogger<FilesDAO> logger, FilesContext context) : IFilesDA
         catch (Exception ex)
         {
             //Логгирование
-            _logger.LogError("{text}: {error}", ErrorMessages.Error, ex.Message);
+            _logger.LogError("{text}: {error}", ErrorMessagesShared.Error, ex.Message);
 
             //Проброс исключения
             throw;
@@ -103,8 +107,8 @@ public class FilesDAO(ILogger<FilesDAO> logger, FilesContext context) : IFilesDA
             _logger.LogInformation(InformationMessages.EnteredGetListFilesMethod);
 
             //Проверки
-            if (entityId == null) throw new Exception(ErrorMessages.EmptyEntity);
-            if (typeId == null) throw new Exception(ErrorMessages.EmptyFileType);
+            if (entityId == null) throw new Exception(ErrorMessagesFiles.EmptyEntity);
+            if (typeId == null) throw new Exception(ErrorMessagesFiles.EmptyFileType);
 
             //Получение данных из бд
             List<FileEntity> data = await _context.Files.Where(
@@ -119,7 +123,7 @@ public class FilesDAO(ILogger<FilesDAO> logger, FilesContext context) : IFilesDA
         catch (Exception ex)
         {
             //Логгирование
-            _logger.LogError("{text}: {error}", ErrorMessages.Error, ex.Message);
+            _logger.LogError("{text}: {error}", ErrorMessagesShared.Error, ex.Message);
 
             //Проброс исключения
             throw;
