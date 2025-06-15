@@ -207,7 +207,7 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                         ["20", "danu.png", "1", "17", ""],
                         ["21", "true_ichthyid.png", "2", "1", ""],
                         ["22", "rejected_ichthyid.png", "2", "2", ""],
-                        ["23", "dryevniiy.png", "2", "2", ""],
+                        ["23", "dryevniiy.png", "2", "3", ""],
                         ["24", "nag.png", "2", "4", ""],
                         ["25", "dikiiy_mraat.png", "2", "5", ""],
                         ["26", "tsivilizovannyiy_mraat.png", "2", "6", ""],
