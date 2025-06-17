@@ -297,9 +297,10 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                         ["108", "factionless.png", "5", "10", ""],
                         ["109", "logo.png", "6", "1", ""],
                         ["110", "about_project.png", "6", "2", ""],
-                        ["111", "news_start.png", "7", "2", ""],
-                        ["112", "news_start_authorization.png", "7", "3", ""],
-                        ["113", "news_start_lending.png", "7", "4", ""],
+                        ["111", "dark_icon.svg", "6", "3", ""],
+                        ["112", "news_start.png", "7", "2", ""],
+                        ["113", "news_start_authorization.png", "7", "3", ""],
+                        ["114", "news_start_lending.png", "7", "4", ""],
                     ];
 
                     //Проход по коллекции ключей

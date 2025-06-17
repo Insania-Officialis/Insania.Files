@@ -15,6 +15,7 @@ public static class ContentTypes
         { "jpg", "image/jpeg" },
         { "png", "image/png" },
         { "tiff", "image/tiff" },
-        { "webp", "image/webp" }
+        { "webp", "image/webp" },
+        { "svg", "image/svg+xml" }
     };
 }
