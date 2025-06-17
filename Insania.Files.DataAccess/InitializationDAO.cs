@@ -141,6 +141,8 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                         new(_transliteration, 3, _username, "Удалённый", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles", DateTime.UtcNow),
                         new(_transliteration, 4, _username, "Страны", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
                         new(_transliteration, 5, _username, "Фракции", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
+                        new(_transliteration, 6, _username, "Общее", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
+                        new(_transliteration, 7, _username, "Новости", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles")
                     ];
 
                     //Проход по коллекции сущностей
@@ -283,15 +285,21 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                         ["96", "principality_rekta.png", "4", "19", ""],
                         ["97", "volar.png", "4", "20", ""],
                         ["98", "union_il_ladro.png", "4", "21", ""],
-                        ["99", "government.png", "5", "2", ""],
-                        ["100", "aristocracy.png", "5", "3", ""],
-                        ["101", "clergy.png", "5", "4", ""],
-                        ["102", "magicians.png", "5", "5", ""],
-                        ["103", "military.png", "5", "6", ""],
-                        ["104", "merchants.png", "5", "7", ""],
-                        ["105", "criminality.png", "5", "8", ""],
-                        ["106", "intelligentsia.png", "5", "9", ""],
-                        ["107", "factionless.png", "5", "10", ""]
+                        ["99", "merger_union.png", "4", "22", ""],
+                        ["100", "government.png", "5", "2", ""],
+                        ["101", "aristocracy.png", "5", "3", ""],
+                        ["102", "clergy.png", "5", "4", ""],
+                        ["103", "magicians.png", "5", "5", ""],
+                        ["104", "military.png", "5", "6", ""],
+                        ["105", "merchants.png", "5", "7", ""],
+                        ["106", "criminality.png", "5", "8", ""],
+                        ["107", "intelligentsia.png", "5", "9", ""],
+                        ["108", "factionless.png", "5", "10", ""],
+                        ["109", "logo.png", "6", "1", ""],
+                        ["110", "about_project.png", "6", "2", ""],
+                        ["111", "news_start.png", "7", "2", ""],
+                        ["112", "news_start_authorization.png", "7", "3", ""],
+                        ["113", "news_start_lending.png", "7", "4", ""],
                     ];
 
                     //Проход по коллекции ключей
