@@ -18,7 +18,7 @@ namespace Insania.Files.Database.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("insania_files")
-                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("ProductVersion", "9.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -156,7 +156,7 @@ namespace Insania.Files.Database.Migrations
 
                     b.HasAlternateKey("Alias");
 
-                    b.ToTable("d_files_types", "insania_files", t =>
+                    b.ToTable("c_files_types", "insania_files", t =>
                         {
                             t.HasComment("Типы файлов");
                         });

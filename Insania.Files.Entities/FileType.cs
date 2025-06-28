@@ -10,7 +10,7 @@ namespace Insania.Files.Entities;
 /// <summary>
 /// Модель сущности типа файла
 /// </summary>
-[Table("d_files_types")]
+[Table("c_files_types")]
 [Comment("Типы файлов")]
 public class FileType : Compendium
 {

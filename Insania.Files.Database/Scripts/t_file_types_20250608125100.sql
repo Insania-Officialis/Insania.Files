@@ -1,2 +1,2 @@
-﻿update insania_files.d_files_types
+﻿update insania_files.c_files_types
 set "path" = '/files';

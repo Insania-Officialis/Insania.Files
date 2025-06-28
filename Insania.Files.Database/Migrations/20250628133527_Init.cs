@@ -16,7 +16,7 @@ namespace Insania.Files.Database.Migrations
                 name: "insania_files");
 
             migrationBuilder.CreateTable(
-                name: "d_files_types",
+                name: "c_files_types",
                 schema: "insania_files",
                 columns: table => new
                 {
@@ -33,8 +33,8 @@ namespace Insania.Files.Database.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_d_files_types", x => x.id);
-                    table.UniqueConstraint("AK_d_files_types_alias", x => x.alias);
+                    table.PrimaryKey("PK_c_files_types", x => x.id);
+                    table.UniqueConstraint("AK_c_files_types_alias", x => x.alias);
                 },
                 comment: "Типы файлов");
 
@@ -48,6 +48,7 @@ namespace Insania.Files.Database.Migrations
                     name = table.Column<string>(type: "text", nullable: false, comment: "Наименование"),
                     extension = table.Column<string>(type: "text", nullable: false, comment: "Расширение"),
                     type_id = table.Column<long>(type: "bigint", nullable: false, comment: "Идентификатор типа"),
+                    entity_id = table.Column<long>(type: "bigint", nullable: false, comment: "Идентификатор сущности"),
                     date_create = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, comment: "Дата создания"),
                     username_create = table.Column<string>(type: "text", nullable: false, comment: "Логин пользователя, создавшего"),
                     date_update = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, comment: "Дата обновления"),
@@ -59,10 +60,10 @@ namespace Insania.Files.Database.Migrations
                 {
                     table.PrimaryKey("PK_r_files", x => x.id);
                     table.ForeignKey(
-                        name: "FK_r_files_d_files_types_type_id",
+                        name: "FK_r_files_c_files_types_type_id",
                         column: x => x.type_id,
                         principalSchema: "insania_files",
-                        principalTable: "d_files_types",
+                        principalTable: "c_files_types",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 },
@@ -83,7 +84,7 @@ namespace Insania.Files.Database.Migrations
                 schema: "insania_files");
 
             migrationBuilder.DropTable(
-                name: "d_files_types",
+                name: "c_files_types",
                 schema: "insania_files");
         }
     }
