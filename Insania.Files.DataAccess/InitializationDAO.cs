@@ -136,13 +136,13 @@ public class InitializationDAO(ILogger<InitializationDAO> logger, FilesContext f
                     //Создание коллекции сущностей
                     List<FileType> entities =
                     [
-                        new(_transliteration, 1, _username, "Расы", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
-                        new(_transliteration, 2, _username, "Нации", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
-                        new(_transliteration, 3, _username, "Удалённый", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles", DateTime.UtcNow),
-                        new(_transliteration, 4, _username, "Страны", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
-                        new(_transliteration, 5, _username, "Фракции", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
-                        new(_transliteration, 6, _username, "Общее", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
-                        new(_transliteration, 7, _username, "Новости", "E:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles")
+                        new(_transliteration, 1, _username, "Расы", "G:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
+                        new(_transliteration, 2, _username, "Нации", "G:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
+                        new(_transliteration, 3, _username, "Удалённый", "G:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles", DateTime.UtcNow),
+                        new(_transliteration, 4, _username, "Страны", "G:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
+                        new(_transliteration, 5, _username, "Фракции", "G:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
+                        new(_transliteration, 6, _username, "Общее", "G:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles"),
+                        new(_transliteration, 7, _username, "Новости", "G:\\Program\\Insania\\Insania.Files\\Insania.Files.Tests\\MockFiles")
                     ];
 
                     //Проход по коллекции сущностей
