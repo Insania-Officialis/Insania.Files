@@ -1,22 +1,25 @@
-﻿using Insania.Files.BusinessLogic;
+﻿using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Json;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+
+using Serilog;
+
+using Insania.Shared.Contracts.Services;
+using Insania.Shared.Middleware;
+using Insania.Shared.Messages;
+using Insania.Shared.Services;
+
+using Insania.Files.BusinessLogic;
 using Insania.Files.Database.Contexts;
 using Insania.Files.Middleware;
 using Insania.Files.Models.Mapper;
-using Insania.Shared.Contracts.Services;
-using Insania.Shared.Messages;
-using Insania.Shared.Middleware;
-using Insania.Shared.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Json;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Serilog;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 //Создания экземпляра постройки веб-приложения
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
