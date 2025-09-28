@@ -24,29 +24,29 @@ jobs:
         git pull
       shell: bash
 
-    # Остановка 1 контейнера чтения
-    - name: Остановка 1 контейнера чтения
+    # Остановка первого контейнера чтения
+    - name: Остановка первого контейнера чтения
       run: |
         cd /app
         docker-compose stop insania_files_api_read_1
       shell: bash
 
-    # Сборка 1 контейнера чтения
-    - name: Сборка 1 контейнера чтения
+    # Сборка первого контейнера чтения
+    - name: Сборка первого контейнера чтения
       run: |
         cd /app
         docker-compose build insania_files_api_read_1
       shell: bash
 
-    # Запуск 1 контейнера чтения
-    - name: Запуск 1 контейнера чтения
+    # Запуск первого контейнера чтения
+    - name: Запуск первого контейнера чтения
       run: |
         cd /app
         docker-compose up -d insania_files_api_read_1
       shell: bash
 
-    # Проверка статуса 1 контейнера чтения
-    - name: Проверка статуса 1 контейнера чтения
+    # Проверка статуса первого контейнера чтения
+    - name: Проверка статуса первого контейнера чтения
       run: |
         cd /app
         sleep 10
@@ -63,29 +63,29 @@ jobs:
         fi
       shell: bash
 
-    # Остановка 2 контейнера чтения
-    - name: Остановка 2 контейнера чтения
+    # Остановка второго контейнера чтения
+    - name: Остановка второго контейнера чтения
       run: |
         cd /app
         docker-compose stop insania_files_api_read_2
       shell: bash
 
-    # Сборка 2 контейнера чтения
-    - name: Сборка 2 контейнера чтения
+    # Сборка второго контейнера чтения
+    - name: Сборка второго контейнера чтения
       run: |
         cd /app
         docker-compose build insania_files_api_read_2
       shell: bash
 
-    # Запуск 2 контейнера чтения
-    - name: Запуск 2 контейнера чтения
+    # Запуск второго контейнера чтения
+    - name: Запуск второго контейнера чтения
       run: |
         cd /app
         docker-compose up -d insania_files_api_read_2
       shell: bash
 
-    # Проверка статуса 2 контейнера чтения
-    - name: Проверка статуса 2 контейнера чтения
+    # Проверка статуса второго контейнера чтения
+    - name: Проверка статуса второго контейнера чтения
       run: |
         cd /app
         sleep 10
@@ -102,29 +102,29 @@ jobs:
         fi
       shell: bash
 
-    # Остановка 1 контейнера записи
-    #- name: Остановка 1 контейнера записи
+    # Остановка первого контейнера записи
+    #- name: Остановка первого контейнера записи
     #  run: |
     #    cd /app
     #    docker-compose stop insania_files_api_commit_1
     #  shell: bash
 
-    # Сборка 1 контейнера записи
-    #- name: Сборка 1 контейнера записи
+    # Сборка первого контейнера записи
+    #- name: Сборка первого контейнера записи
     #  run: |
     #    cd /app
     #    docker-compose build insania_files_api_commit_1
     #  shell: bash
 
-    # Запуск 1 контейнера записи
-    #- name: Запуск 1 контейнера записи
+    # Запуск первого контейнера записи
+    #- name: Запуск первого контейнера записи
     #  run: |
     #    cd /app
     #    docker-compose up -d insania_files_api_commit_1
     #  shell: bash
 
-    # Проверка статуса 1 контейнера записи
-    #- name: Проверка статуса 1 контейнера записи
+    # Проверка статуса первого контейнера записи
+    #- name: Проверка статуса первого контейнера записи
     #  run: |
     #    cd /app
     #    sleep 10
@@ -141,29 +141,29 @@ jobs:
     #    fi
     #  shell: bash
 
-    # Остановка 2 контейнера записи
-    #- name: Остановка 2 контейнера записи
+    # Остановка второго контейнера записи
+    #- name: Остановка второго контейнера записи
     #  run: |
     #    cd /app
     #    docker-compose stop insania_files_api_commit_2
     #  shell: bash
 
-    # Сборка 2 контейнера записи
-    #- name: Сборка 2 контейнера записи
+    # Сборка второго контейнера записи
+    #- name: Сборка второго контейнера записи
     #  run: |
     #    cd /app
     #    docker-compose build insania_files_api_commit_2
     #  shell: bash
 
-    # Запуск 2 контейнера записи
-    #- name: Запуск 2 контейнера записи
+    # Запуск второго контейнера записи
+    #- name: Запуск второго контейнера записи
     #  run: |
     #    cd /app
     #    docker-compose up -d insania_files_api_commit_2
     #  shell: bash
 
-    # Проверка статуса 2 контейнера записи
-    #- name: Проверка статуса 2 контейнера записи
+    # Проверка статуса второго контейнера записи
+    #- name: Проверка статуса второго контейнера записи
     #  run: |
     #    cd /app
     #    sleep 10
@@ -194,29 +194,29 @@ jobs:
         git pull
       shell: powershell
 
-    # Остановка 1 контейнера чтения
-    - name: Остановка 1 контейнера чтения
+    # Остановка первого контейнера чтения
+    - name: Остановка первого контейнера чтения
       run: |
         cd C:\Insania
         docker-compose stop insania_files_api_read_1
       shell: powershell
 
-    # Сборка 1 контейнера чтения
-    - name: Сборка 1 контейнера чтения
+    # Сборка первого контейнера чтения
+    - name: Сборка первого контейнера чтения
       run: |
         cd C:\Insania
         docker-compose build insania_files_api_read_1
       shell: powershell
 
-    # Запуск 1 контейнера чтения
-    - name: Запуск 1 контейнера чтения
+    # Запуск первого контейнера чтения
+    - name: Запуск первого контейнера чтения
       run: |
         cd C:\Insania
         docker-compose up -d insania_files_api_read_1
       shell: powershell
 
-    # Проверка статуса 1 контейнера чтения
-    - name: Проверка статуса 1 контейнера чтения
+    # Проверка статуса первого контейнера чтения
+    - name: Проверка статуса первого контейнера чтения
       run: |
         cd C:\Insania
         Start-Sleep -Seconds 10
@@ -233,29 +233,29 @@ jobs:
         }
       shell: powershell
 
-    # Остановка 2 контейнера чтения
-    - name: Остановка 2 контейнера чтения
+    # Остановка второго контейнера чтения
+    - name: Остановка второго контейнера чтения
       run: |
         cd C:\Insania
         docker-compose stop insania_files_api_read_2
       shell: powershell
 
-    # Сборка 2 контейнера чтения
-    - name: Сборка 2 контейнера чтения
+    # Сборка второго контейнера чтения
+    - name: Сборка второго контейнера чтения
       run: |
         cd C:\Insania
         docker-compose build insania_files_api_read_2
       shell: powershell
 
-    # Запуск 2 контейнера чтения
-    - name: Запуск 2 контейнера чтения
+    # Запуск второго контейнера чтения
+    - name: Запуск второго контейнера чтения
       run: |
         cd C:\Insania
         docker-compose up -d insania_files_api_read_2
       shell: powershell
 
-    # Проверка статуса 2 контейнера чтения
-    - name: Проверка статуса 2 контейнера чтения
+    # Проверка статуса второго контейнера чтения
+    - name: Проверка статуса второго контейнера чтения
       run: |
         cd C:\Insania
         Start-Sleep -Seconds 10
@@ -272,29 +272,29 @@ jobs:
         }
       shell: powershell
 
-    # Остановка 1 контейнера записи
-    #- name: Остановка 1 контейнера записи
+    # Остановка первого контейнера записи
+    #- name: Остановка первого контейнера записи
     #  run: |
     #    cd C:\Insania
     #    docker-compose stop insania_files_api_commit_1
     #  shell: powershell
 
-    # Сборка 1 контейнера записи
-    #- name: Сборка 1 контейнера записи
+    # Сборка первого контейнера записи
+    #- name: Сборка первого контейнера записи
     #  run: |
     #    cd C:\Insania
     #    docker-compose build insania_files_api_commit_1
     #  shell: powershell
 
-    # Запуск 1 контейнера записи
-    #- name: Запуск 1 контейнера записи
+    # Запуск первого контейнера записи
+    #- name: Запуск первого контейнера записи
     #  run: |
     #    cd C:\Insania
     #    docker-compose up -d insania_files_api_commit_1
     #  shell: powershell
 
-    # Проверка статуса 1 контейнера записи
-    #- name: Проверка статуса 1 контейнера записи
+    # Проверка статуса первого контейнера записи
+    #- name: Проверка статуса первого контейнера записи
     #  run: |
     #    cd C:\Insania
     #    Start-Sleep -Seconds 10
@@ -311,29 +311,29 @@ jobs:
     #    }
     #  shell: powershell
 
-    # Остановка 2 контейнера записи
-    #- name: Остановка 2 контейнера записи
+    # Остановка второго контейнера записи
+    #- name: Остановка второго контейнера записи
     #  run: |
     #    cd C:\Insania
     #    docker-compose stop insania_files_api_commit_2
     #  shell: powershell
 
-    # Сборка 2 контейнера записи
-    #- name: Сборка 2 контейнера записи
+    # Сборка второго контейнера записи
+    #- name: Сборка второго контейнера записи
     #  run: |
     #    cd C:\Insania
     #    docker-compose build insania_files_api_commit_2
     #  shell: powershell
 
-    # Запуск 2 контейнера записи
-    #- name: Запуск 2 контейнера записи
+    # Запуск второго контейнера записи
+    #- name: Запуск второго контейнера записи
     #  run: |
     #    cd C:\Insania
     #    docker-compose up -d insania_files_api_commit_2
     #  shell: powershell
 
-    # Проверка статуса 2 контейнера записи
-    #- name: Проверка статуса 2 контейнера записи
+    # Проверка статуса второго контейнера записи
+    #- name: Проверка статуса второго контейнера записи
     #  run: |
     #    cd C:\Insania
     #    Start-Sleep -Seconds 10
