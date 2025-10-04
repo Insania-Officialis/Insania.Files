@@ -34,6 +34,7 @@
     <ProjectReference Include="..\Insania.Files.Messages\Insania.Files.Messages.csproj" />
     <ProjectReference Include="..\Insania.Files.Middleware\Insania.Files.Middleware.csproj" />
     <ProjectReference Include="..\Insania.Files.Models\Insania.Files.Models.csproj" />
+    <ProjectReference Include="..\Insania.Files.Services\Insania.Files.Services.csproj" />
   </ItemGroup>
 
 </Project>

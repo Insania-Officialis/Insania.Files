@@ -17,9 +17,11 @@ using Insania.Shared.Messages;
 using Insania.Shared.Services;
 
 using Insania.Files.BusinessLogic;
+using Insania.Files.Contracts.Services;
 using Insania.Files.Database.Contexts;
 using Insania.Files.Middleware;
 using Insania.Files.Models.Mapper;
+using Insania.Files.Services;
 
 //Создания экземпляра постройки веб-приложения
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -80,6 +82,9 @@ services
 //Внедрение зависимостей сервисов
 services.AddSingleton(_ => configuration); //конфигурация
 services.AddScoped<ITransliterationSL, TransliterationSL>(); //сервис транслитерации
+services.AddSingleton<LoggingSL>(); //сервис логгирование в бд
+services.AddSingleton<ILoggingSL>(provider => provider.GetRequiredService<LoggingSL>()); //подключение сервиса для использования другими сервисами
+services.AddHostedService(provider => provider.GetRequiredService<LoggingSL>()); //подключение сервиса для работы фоном
 services.AddFilesBL(); //сервисы работы с бизнес-логикой в зоне файлов
 
 //Добавление контекстов бд в коллекцию сервисов
