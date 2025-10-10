@@ -14,6 +14,9 @@ using Insania.Files.DataAccess;
 using Insania.Files.Database.Contexts;
 using Insania.Files.Models.Settings;
 using Insania.Files.Models.Mapper;
+using Insania.Files.Entities;
+
+using File = System.IO.File;
 
 namespace Insania.Files.Tests.Base;
 
@@ -79,6 +82,9 @@ public abstract class BaseTest
         //Создание поставщика сервисов
         ServiceProvider = services.BuildServiceProvider();
 
+        //Обновление путей файлов
+        UpdateFilePath().Wait();
+
         //Выполнение инициализации данных
         IInitializationDAO initialization = ServiceProvider.GetRequiredService<IInitializationDAO>();
         initialization.Initialize().Wait();
@@ -115,9 +121,36 @@ public abstract class BaseTest
     {
         //Проверка запуска в докере
         bool isRunningInDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true" || File.Exists("/.dockerenv");
-
+        
+        //Возврат нужного пути
         if (isRunningInDocker) return "/src/Insania.Files.Database/Scripts";
         else return "G:\\Program\\Insania\\Insania.Files\\Insania.Files.Database\\Scripts";
+    }
+
+    /// <summary>
+    /// Метод обновления пути файлов
+    /// </summary>
+    private async Task UpdateFilePath()
+    {
+        //Проверка запуска в докере
+        bool isRunningInDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true" || File.Exists("/.dockerenv");
+        if (isRunningInDocker)
+        {
+            //Получение контекста бд
+            FilesContext context = ServiceProvider.GetRequiredService<FilesContext>();
+
+            //Получение типов файлов
+            List<FileType> types = await context.FilesTypes.ToListAsync();
+
+            //Обновление путей типов файлов
+            foreach (FileType type in types)
+            {
+                type.SetPath("/files");
+            }
+
+            //Сохранение изменений
+            await context.SaveChangesAsync();
+        }
     }
     #endregion
 }
