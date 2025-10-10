@@ -83,11 +83,7 @@ public abstract class BaseTest
         ServiceProvider = services.BuildServiceProvider();
 
         //Выполнение инициализации данных
-        IInitializationDAO initialization = ServiceProvider.GetRequiredService<IInitializationDAO>();
-        initialization.Initialize().Wait();
-
-        //Обновление путей файлов
-        UpdateFilePath().Wait();
+        InitializeAsync().Wait();
     }
     #endregion
 
@@ -128,8 +124,23 @@ public abstract class BaseTest
     }
 
     /// <summary>
+    /// Инициализация
+    /// </summary>
+    /// <returns cref="Task">Задание</returns>
+    protected async Task InitializeAsync()
+    {
+        // Выполнение инициализации данных
+        IInitializationDAO initialization = ServiceProvider.GetRequiredService<IInitializationDAO>();
+        await initialization.Initialize();
+
+        // Обновление путей файлов
+        await UpdateFilePath();
+    }
+
+    /// <summary>
     /// Метод обновления пути файлов
     /// </summary>
+    /// <returns cref="Task">Задание</returns>
     private async Task UpdateFilePath()
     {
         //Проверка запуска в докере
