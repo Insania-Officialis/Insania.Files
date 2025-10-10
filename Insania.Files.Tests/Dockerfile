@@ -19,5 +19,5 @@ WORKDIR /src/Insania.Files.Tests
 #Сборка проекта тестов
 RUN dotnet build "./Insania.Files.Tests.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-#Запуск тестов
-RUN dotnet test "./Insania.Files.Tests.csproj" -c $BUILD_CONFIGURATION --logger:"console;verbosity=normal"
+# Запуск тестов
+CMD ["dotnet", "test", "--logger:console;verbosity=normal"]
