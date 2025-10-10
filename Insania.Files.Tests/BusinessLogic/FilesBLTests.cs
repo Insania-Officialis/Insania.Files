@@ -65,11 +65,11 @@ public class FilesBLTests : BaseTest
     {
         try
         {
-            //Получение результата
-            FileResponse? result = await FilesBL.GetById(id);
-
             var types = await FilesTypesDAO.GetList();
             throw new Exception(string.Join(',', types.Select(x => x.Path)));
+
+            //Получение результата
+            FileResponse? result = await FilesBL.GetById(id);
 
             //Проверка результата
             Assert.That(result, Is.Not.Null);
