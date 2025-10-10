@@ -34,8 +34,8 @@ public abstract class BaseTest
         //Создание коллекции ключей конфигурации
         Dictionary<string, string> configurationKeys = new()
         {
-           {"LoggingOptions:FilePath", "G:\\Program\\Insania\\Logs\\Files.Tests\\log.txt"},
-           {"InitializationDataSettings:ScriptsPath", "G:\\Program\\Insania\\Insania.Files\\Insania.Files.Database\\Scripts"},
+           {"LoggingOptions:FilePath", DetermineLogPath()},
+           {"InitializationDataSettings:ScriptsPath", DetermineScriptsPath()},
            {"InitializationDataSettings:InitStructure", "false"},
            {"InitializationDataSettings:Tables:FilesTypes", "true"},
            {"InitializationDataSettings:Tables:Files", "true"},
@@ -90,5 +90,34 @@ public abstract class BaseTest
     /// Поставщик сервисов
     /// </summary>
     protected IServiceProvider ServiceProvider { get; set; }
+    #endregion
+
+    #region Методы
+    /// <summary>
+    /// Метод определения пути для логов
+    /// </summary>
+    /// <returns cref="string">Путь для сохранения логов</returns>
+    private static string DetermineLogPath()
+    {
+        //Проверка запуска в докере
+        bool isRunningInDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true" || File.Exists("/.dockerenv");
+
+        //Возврат нужного пути
+        if (isRunningInDocker) return "/logs/log.txt";
+        else return "G:\\Program\\Insania\\Logs\\Files.Tests\\log.txt";
+    }
+
+    /// <summary>
+    /// Метод определения пути для скриптов
+    /// </summary>
+    /// <returns cref="string">Путь к скриптам</returns>
+    private static string DetermineScriptsPath()
+    {
+        //Проверка запуска в докере
+        bool isRunningInDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true" || File.Exists("/.dockerenv");
+
+        if (isRunningInDocker) return "/src/Insania.Files.Database/Scripts";
+        else return "G:\\Program\\Insania\\Insania.Files\\Insania.Files.Database\\Scripts";
+    }
     #endregion
 }
