@@ -82,12 +82,12 @@ public abstract class BaseTest
         //Создание поставщика сервисов
         ServiceProvider = services.BuildServiceProvider();
 
-        //Обновление путей файлов
-        UpdateFilePath().Wait();
-
         //Выполнение инициализации данных
         IInitializationDAO initialization = ServiceProvider.GetRequiredService<IInitializationDAO>();
         initialization.Initialize().Wait();
+
+        //Обновление путей файлов
+        UpdateFilePath().Wait();
     }
     #endregion
 

@@ -90,7 +90,7 @@ public class FilesBL(ILogger<FilesBL> logger, IMapper mapper, IFilesDAO filesDAO
             string filePath = Path.Combine(type.Path, type.Alias, data.EntityId.ToString(), data.Name);
 
             //Проверка наличия файла
-            if (!File.Exists(filePath)) throw new Exception($"{ErrorMessagesFiles.NotFoundFile}: {filePath}");
+            if (!File.Exists(filePath)) throw new Exception(ErrorMessagesFiles.NotFoundFile);
 
             //Формирование потока файла
             FileStream stream = new(filePath, FileMode.Open);

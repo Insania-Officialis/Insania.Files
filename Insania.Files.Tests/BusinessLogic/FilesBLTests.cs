@@ -3,7 +3,6 @@
 using Insania.Shared.Models.Responses.Base;
 
 using Insania.Files.Contracts.BusinessLogic;
-using Insania.Files.Contracts.DataAccess;
 using Insania.Files.Models.Responses;
 using Insania.Files.Tests.Base;
 
@@ -24,8 +23,6 @@ public class FilesBLTests : BaseTest
     /// Сервис работы с бизнес-логикой файлов
     /// </summary>
     private IFilesBL FilesBL { get; set; }
-
-    private IFilesTypesDAO FilesTypesDAO { get; set; }
     #endregion
 
     #region Общие методы
@@ -37,7 +34,6 @@ public class FilesBLTests : BaseTest
     {
         //Получение зависимости
         FilesBL = ServiceProvider.GetRequiredService<IFilesBL>();
-        FilesTypesDAO = ServiceProvider.GetRequiredService<IFilesTypesDAO>();
     }
 
     /// <summary>
@@ -65,9 +61,6 @@ public class FilesBLTests : BaseTest
     {
         try
         {
-            var types = await FilesTypesDAO.GetList();
-            throw new Exception(string.Join(',', types.Select(x => x.Path)));
-
             //Получение результата
             FileResponse? result = await FilesBL.GetById(id);
 
